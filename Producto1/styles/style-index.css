@@ -1,88 +1,27 @@
-#labelProfile{
-  content: "img/blank-profile.png";
-
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400&display=swap');
+*{
+  font-family: 'Josefin Sans', sans-serif;
 }
-
-
-.wrapper {
-  font-size: 0
-}
-.body{
-  width-min: 100%;
-}
-.nav{
-  display: block;
-  width: 100%;
-  padding-left: 2%;
-}
-
-.h1{
-  width: 95%;
-  font-size: 38px;
-  padding-left: 2%;
-}
-
-content{
+.header {
   display: flex;
-  flex-direction: row;
-  width: 75%;
-}
-
-content div{
-  display: flex;
-  flex-direction: row;
-  min-width: 25%;
-}
-
-/* content div span{
-  min-width: 25%;
-  margin: 25%;
-  padding-top: 1%;
-
-} */
-
-/* content div span:first-child{
-  height: 15%;
-  border-radius: 15px;
-  display: flex;
+  justify-content: space-between;
   align-items: center;
-  text-align: center;
-  justify-content: center;
-} */
-
-.todo{
-  background-color: red;
+  background-color: #ac0f0f;
+  color: #fff;
+  width: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
 }
-
-.inprogress{
-  background-color: orange;
+.header button {
+  margin-left: auto;
 }
-
-.done{
-  background-color: green;
-}
-
-
-@media screen and (min-width: 1540px) {
-  .content div p{
-    font-size: 100%;
-  }
-}
-
-@media screen and (max-width: 1540px) {
-  .content div p{
-    font-size: 75%;
-  }
-}
-
-@media screen and (max-width: 1150px) {
-  .content div p{
-    font-size: 50%;
-  }
-}
-
-@media screen and (max-width: 775px) {
-  .content div p{
-    font-size: 25%;
-  }
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ac0f0f;
+  color: #fff;
+  width: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
 }
