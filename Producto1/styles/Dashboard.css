@@ -59,24 +59,19 @@ h1 {
 }
 
 .contenedor-modal .modal {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 0 500px;
-  padding: 50px;
-  background-color: #fff;
-  opacity: 1;
+    width: 55%;
+    display: block;
+    overflow: hidden;
+    position: relative;
+    top: -76px;
+    margin: 0 auto;
+    height: 667px;
+    padding: 50px;
+    background-color: #fff;
+    opacity: 1;
 }
 
-form {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+
 
 form input {
   margin: 15px;
