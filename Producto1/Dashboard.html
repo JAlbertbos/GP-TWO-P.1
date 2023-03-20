@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=div, initial-scale=1.0">
     <title>Dashboard - Agenda Semanal</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="/Producto1/styles/style-new-panel.css">
+   <link rel="stylesheet" href="/Producto1/styles/Dashboard.css">
+   <link rel="stylesheet" href="/Producto1/bootstrap/css/bootstrap.min.css"> 
   </head>
   <body>
+    <!-- Barra de navegacion -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="#">Agenda Semanal</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,11 +22,17 @@
             <a class="nav-link" href="#">Dashboard</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Nueva semana</a>
+            <div class="contenedor">
+              <button class="btn" type="submit" id="lanzar-modal">NUEVA SEMANA</button>
+            </div>
           </li>
         </ul>
       </div>
+    </div>
+    
     </nav>
+    <!--FIN Barra de navegacion -->
+    <!-- TARJETAS-->
     <div class="container my-4">
       <div class="row">
         <div class="col-md-4">
@@ -55,6 +67,46 @@
         </div>
       </div>
     </div>
-    <div class
-
+    <!-- FIN TARJETAS-->
+    <!-- MODAL DE CREACION DE NUEVA SEMANA-->
+    <div class="contenedor-modal">
+      <div class="modal">
+        <div class="container">
+           <form class="form">
+                    <h2>Nueva Semana</h2>
+                <div class="form-group">
+                    <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
+                </div>
+                <div class="form-group">
+                    <input type="number" id="semana" name="semana" placeholder="Número de semana" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="mes" name="mes" placeholder="Mes" required>
+                </div>
+                <div class="form-group">
+                    <input type="number" id="ano" name="ano" placeholder="Año" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">  <i class="bi bi-check-lg"></i></button>
+                    <button type="reset" class="btn btn-secondary"><i class="bi bi-x-lg"></i></button>
+                </div>
+            </form>
+            <div class="circles">
+                <div class="circle red"></div>
+                <div class="circle orange"></div>
+                <div class="circle yellow"></div>
+                <div class="circle green"></div>
+                <div class="circle blue"></div>
+                <div class="circle purple"></div>
+            </div>
+            <div class="color-bar"></div>
+            <textarea id="descripcion" class="text-area" placeholder="Descripción"></textarea>
+      </div>
+     </div>
+     
+    </div>
+    <!--FIN MODAL DE CREACION DE NUEVA SEMANA-->
+    <script src="./app.js"></script>
+  </body>
+</html>
 

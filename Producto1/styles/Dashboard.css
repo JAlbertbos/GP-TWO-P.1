@@ -1,39 +1,84 @@
-@charset "utf-8";
-.tarjeta{
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  width:420px;
-  border: 1px solid lightgray;
-  box-shadow: 2px 2px 8px 4px #d3d3d3d1;
-  border-radius:15px;
-  font-family: sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-.titulo{
-  font-size: 24px;
-  padding: 10px 10px 0 10px;;
+
+h1 {
+  width: 100%;
+  height: 50px;
+  margin: 50px 0;
+  text-align: center;
 }
-.cuerpo{
-  padding: 10px;
+
+.contenedor {
+  width: 100%;
+  height: 100px;
+  text-align: center;
 }
-.pie{
-  background: #6699ff;
-  border-radius:0 0 15px 15px;
-  padding: 10px;
-  text-align:center;
+
+.contenedor p {
+  margin: 30px 0;
+  font-size: 2.5em;
 }
-.pie a{
-  text-decoration: none;
-  color: white;
+
+.btn {
+  text-align: center;
+  padding: 15px;
+  border-radius: 50px;
+  background-color: blue;
+  border: none;
+  color: #fff;
+  transition: all 0.5s;
+}*/
+
+.btn:hover {
+  background-color: rgb(31, 31, 145);
 }
-.pie a:after {
-  position: absolute;
+
+
+.contenedor-modal {
+  position: fixed;
   top: 0;
+  left: 0;
   right: 0;
   bottom: 0;
-  left: 0;
-  z-index: 1;
-  content: ""
+  z-index: -1;
+  opacity: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
+.contenedor-modal.mostrar {
+  background-color: black;
+  z-index: 1;
+  opacity: 0.9;
+}
 
+.contenedor-modal .modal {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 500px;
+  padding: 50px;
+  background-color: #fff;
+  opacity: 1;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+form input {
+  margin: 15px;
+  padding: 10px;
+}
