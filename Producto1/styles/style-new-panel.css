@@ -2,14 +2,30 @@
 *{
   font-family: 'Josefin Sans', sans-serif;
 }
+
+body{
+  background-image: url(/Producto1/img/background.png);
+}
 .container {
+  width: 25%;
   margin: 5em;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 1px solid black;
+  flex-basis: content;
+  border-radius: 20px;
+  padding: 2em;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px); 
 }
-
+.deletecont{
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
 .form {
   display: flex;
   flex-direction: column;
@@ -57,7 +73,6 @@ input {
   justify-content: space-between;
   align-items: center;
   margin-left: 1rem;
- 
 }
 
 .circle {
