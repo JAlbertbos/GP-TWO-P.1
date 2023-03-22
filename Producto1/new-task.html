@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Producto1/bootstrap/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="/Producto1/styles/style-newtask.css">
+    
+    <title>GP-TWO</title>
+</head>
+
+<body>
+    <header class="bg-danger shadow-inner">
+        <div class="container d-flex justify-content-between align-items-center py-3">
+            <button type="button" class="btn btn-light"> <a href="/Producto1/Dashboard.html">Volver</a></button>
+            <h1 class="text-center text-white m-0">Aplicación de GP-2</h1>
+            <button class="btn btn-light">
+                <i class="bi bi-x"></i>
+            </button>
+        </div>
+    </header>
+    <div class="container-fluid">
+        <div class="row">
+            <main class="col-lg-9 col-md-8 col-sm-12 no-margin">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card card-position">
+                            <div class="card-body">
+                                <h5 class="card-title">Título card 1</h5>
+                                <p class="card-text">Contenido card 1.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Título card 2</h5>
+                                <p class="card-text">Contenido card 2.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Título card 3</h5>
+                                <p class="card-text">Contenido card 3.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Título card 4</h5>
+                                <p class="card-text">Contenido card 4.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <aside class="col-lg-3 col-md-4 col-sm-12 ">
+                <div class="iconnew">
+                    <div class="card-body ">
+                        <i class="bi bi-folder" data-bs-toggle="modal" data-bs-target="#folderModal"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Título card aside</h5>
+                        <p class="card-text">Contenido card aside.</p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="folderModal" tabindex="-1" aria-labelledby="folderModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="folderModalLabel">Mi formulario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="exampleFormControlInput1"
+                                placeholder="nombre@ejemplo.com">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Mensaje</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-light py-3">
+        <div class="container text-center">
+            Todos los derechos reservados &copy; 2023
+        </div>
+    </footer>
+    <script src="/Producto1/bootstrap/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
