@@ -10,8 +10,7 @@
   <link rel="stylesheet" href="/Producto1/styles/Dashboard.css">
   <title>GP-TWO</title>
 </head>
-
-<body>
+<body class="d-flex flex-column min-vh-100">
   <header class="bg-danger shadow-inner">
     <div class="container d-flex justify-content-between align-items-center py-3">
       <button type="button" class="btn btn-primary" id="addCard" data-bs-toggle="modal"
@@ -24,7 +23,7 @@
       </button>
     </div>
   </header>
-  <main class="container my-5">
+  <main class="container my-5 flex-grow-1">
     <div class="row">
       <div class="col-md-4 mb-4">
         <div class="card shadow-sm card-square" data-id="1">
@@ -66,7 +65,6 @@
       Todos los derechos reservados &copy; 2023
     </div>
   </footer>
-
   <!-- Modal -->
   <div class="modal fade" id="nuevaSemanaModal" tabindex="-1" aria-labelledby="nuevaSemanaModalLabel"
     aria-hidden="true">
@@ -112,9 +110,30 @@
       </div>
     </div>
   </div>
+  <!-- Modal para confirmar eliminación de tarjeta -->
+<div class="modal fade" id="eliminarTarjetaModal" tabindex="-1" aria-labelledby="eliminarTarjetaModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-header bg-danger text-white">
+      <h5 class="modal-title" id="eliminarTarjetaModalLabel">Eliminar tarjeta</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+    </div>
+    <div class="modal-body">
+      <p>¿Estás seguro de que quieres eliminar esta tarjeta?</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+      <button type="button" class="btn btn-danger" id="eliminarTarjetaBtn">Eliminar</button>
+    </div>
+  </div>
+</div>
+<!--TENEMOS QUE HACER QUE LA TARJETA POR DEFAULT SEA NEGRA-->
+</div>
   <script src="/Producto1/scripts/select-color.js"></script>
   <script src="/Producto1/scripts/delete-week.js"></script>
   <script src="/Producto1/scripts/create-task.js"></script>
+  <script src="/Producto1/scripts/remove-element.js"></script>
   <script src="/Producto1/bootstrap/bootstrap.bundle.min.js"></script>
 </body>
 
