@@ -57,6 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       // Verificar otros campos requeridos
       return true;
+    }
 
     // Cerrar el modal
     const nuevaSemanaModal = document.getElementById("nuevaSemanaModal");
