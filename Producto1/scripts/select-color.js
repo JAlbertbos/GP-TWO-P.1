@@ -1,17 +1,9 @@
-// Obtenemos todos los elementos circulo
-const circles = document.querySelectorAll('.circle');
+const circles = document.querySelectorAll(".circle");
+const description = document.querySelector("textarea");
 
-// Obtenemos el elemento textarea
-const descripcion = document.getElementById('descripcion');
-
-// Agregamos un event listener para cada círculo
 circles.forEach(circle => {
-    circle.addEventListener('click', () => {
-        // Obtenemos el color del círculo seleccionado
-        const color = getComputedStyle(circle).getPropertyValue('background-color');
-        
-
-        // Cambiamos el fondo del área de texto al color elegido
-        descripcion.style.backgroundColor = color;
+    circle.addEventListener("click", () => {
+        const color = circle.classList[1];
+        description.style.borderColor = color;
     });
 });
