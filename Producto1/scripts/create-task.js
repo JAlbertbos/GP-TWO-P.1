@@ -1,112 +1,67 @@
-let column;
+document.addEventListener("DOMContentLoaded", () => {
+  const addCardBtn = document.getElementById("addCard");
+  const confirmBtn = document.getElementById("confirmButton");
+  const cardForm = document.getElementById("cardForm");
 
-function discoverColumn(n){
-  if(n === "TODO"){
-    column= "TODO";
+  function generateRandomId() {
+    return Math.floor(Math.random() * 1000000);
   }
-  else if(n === "INPROGRESS"){
-    column= "INPROGRESS";
+
+  function createCard(title, id) {
+    const cardContainer = document.createElement("div");
+    cardContainer.classList.add("col-md-4", "mb-4");
+
+    const card = `
+      <div class="card shadow-sm card-square" data-id="${id}" style="border-color: ${selectedColor}">
+        <div class="card-body">
+          <h5 class="card-title">${title}</h5>
+        </div>
+        <<div class="card-icons d-flex justify-content-between position-absolute bottom-0 start-0 end-0">
+          <a href="#" class="card-link view-icon"><i class="bi bi-eye"></i></a>
+          <a href="#" class="card-link delete-icon"><i class="bi bi-trash"></i></a>
+        </div>
+      </div>
+    `;
+
+    cardContainer.innerHTML = card;
+
+    const mainRow = document.querySelector("main .row");
+    mainRow.appendChild(cardContainer);
+
+    const deleteIcon = cardContainer.querySelector(".delete-icon");
+    deleteIcon.addEventListener("click", (e) => {
+      e.preventDefault();
+      const cardContainer = e.target.closest(".col-md-4.mb-4");
+      deleteCard(cardContainer);
+    });
   }
-  else{
-    column= "DONE";
+
+  function deleteCard(cardContainer) {
+    cardContainer.remove();
   }
-  console.log(column);
-}
 
+  confirmBtn.addEventListener("click", (e) => {
+    e.preventDefault();
 
-function createTask(){
-    const title = document.getElementById("title").value;
-    const description = document.getElementById("description").value;
-    const priority = document.getElementById("priority").value;
-    console.log(title, description, priority);
-    addTask(title, description, priority);
-}
+    const title = cardForm.querySelector("input[type='text']").value;
+    const id = generateRandomId();
 
-function addTask(titulo, descripcion, priority){
-//crear elementos
-    const element = document.getElementById('col1');
-    const row = document.createElement("div");
-    const card = document.createElement("div");
-    const cardBody = document.createElement("div");
-    const title = document.createElement("h5");
-    const description = document.createElement("p");
-    const container = document.createElement("div");
-    const containerRow = document.createElement("div");
-    const col1 = document.createElement("div");
-    const span = document.createElement("span");
-    const col2 = document.createElement("div");
-    const editButton = document.createElement("button");
-    const imgEditButton = document.createElement("img");
-    const col3 = document.createElement("div");
-    const deleteButton = document.createElement("button");
-    const imgDeleteButton = document.createElement("img");
-//añadir clases, atributos, funcionalidades y contenido
-    row.classList.add("row");
-    row.setAttribute("draggable", "true");
-    card.classList.add("card", "cursor-move");
-    cardBody.classList.add("card-body");
-    title.classList.add("card-title");
-    title.textContent= titulo;
-    description.classList.add("card-text");
-    description.textContent= descripcion;
-    container.classList.add("container", "m-0", "p-0");
-    containerRow.classList.add("row");
-    col1.classList.add("col-10");
-    if(priority === "1"){
-      span.classList.add("badge", "bg-success");
-      span.textContent= "Low";
-    }
-    else if(priority === "2"){
-      span.classList.add("badge", "bg-warning");
-      span.textContent= "Medium";
-    }
-    else{
-      span.classList.add("badge", "bg-danger");
-      span.textContent= "Hight";
-    }
-    col2.classList.add("col-1");
-    editButton.classList.add("btn");
-    editButton.setAttribute("type", "button");
-    editButton.setAttribute("data-bs-toggle", "modal");
-    editButton.setAttribute("data-bs-target", "#editTaskModal");
-    //editButton.setAttribute("onclick", "editElement(this)");
-    imgEditButton.classList.add("mt-3");
-    imgEditButton.src= "img/icons-nota-resize.png";
-    col3.classList.add("col-1");
-    deleteButton.classList.add("btn");
-    deleteButton.setAttribute("type", "button");
-    deleteButton.setAttribute("data-bs-toggle", "modal");
-    deleteButton.setAttribute("data-bs-target", "#removeTaskModal");
-    //deleteButton.setAttribute("onclick", "removeElement(this)");
-    imgDeleteButton.classList.add("mt-3");
-    imgDeleteButton.src= "img/basura.png";
+    createCard(title, id);
 
+    // Cerrar el modal
+    const nuevaSemanaModal = document.getElementById("nuevaSemanaModal");
+    const modal = bootstrap.Modal.getInstance(nuevaSemanaModal);
+    modal.hide();
 
+    // Limpiar el formulario
+    cardForm.reset();
+  });
 
-
-
-//add parents
-    row.appendChild(card);
-    card.appendChild(cardBody);
-    cardBody.appendChild(title);
-    cardBody.appendChild(description);
-    cardBody.appendChild(container);
-    container.appendChild(containerRow);
-    containerRow.appendChild(col1);
-    containerRow.appendChild(col2);
-    containerRow.appendChild(col3);
-    col1.appendChild(span);
-    col2.appendChild(editButton);
-    editButton.appendChild(imgEditButton);
-    col3.appendChild(deleteButton);
-    deleteButton.appendChild(imgDeleteButton);
-    element.appendChild(row);
-
-    setDraggables();
-}
-
-
-//añadir la funcionalidad al boton
-
-const saveNewTask = document.getElementById("saveNewTask");
-saveNewTask.addEventListener("click", createTask);
+  document.querySelectorAll(".delete-icon").forEach((deleteIcon) => {
+    deleteIcon.addEventListener("click", (e) => {
+      e.preventDefault();
+      const cardContainer = e.target.closest(".col-md-4.mb-4");
+      deleteCard(cardContainer);
+    });
+  });
+});
