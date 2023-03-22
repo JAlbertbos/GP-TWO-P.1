@@ -48,6 +48,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     createCard(title, id);
 
+    // Validar el formulario 
+    function validarFormulario() {
+      var campoNombre = document.forms["NuevaSemana"]["nombre"].value;
+      if (campoNombre == "") {
+          alert("Por favor, complete el campo Nombre.");
+          return false;
+      }
+      // Verificar otros campos requeridos
+      return true;
+
     // Cerrar el modal
     const nuevaSemanaModal = document.getElementById("nuevaSemanaModal");
     const modal = bootstrap.Modal.getInstance(nuevaSemanaModal);
