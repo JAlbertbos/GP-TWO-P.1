@@ -1,79 +1,93 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+
+@import url('https://fonts.googleapis.com/css2?family=Changa&display=swap');
+
+*{
+  font-family: 'Changa', sans-serif;
+
 }
 
-h1 {
-  width: 100%;
-  height: 50px;
-  margin: 50px 0;
-  text-align: center;
+body {
+  background-image: url('/img/background.png');
+  background-size: cover;
+  background-attachment: fixed;
 }
 
-.contenedor {
-  width: 100%;
-  height: 100px;
-  text-align: center;
+.button-nueva{
+  font-size: 1.5rem;
 }
 
-.contenedor p {
-  margin: 30px 0;
-  font-size: 2.5em;
+.shadow-inside {
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-.btn {
-  text-align: center;
-  padding: 15px;
-  border-radius: 50px;
+
+.card-square {
+  position: relative;
+  overflow: hidden;
+  background-color: #ffffff84;
+  backdrop-filter: blur(5px);
+}
+.card-square::before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+.card-square .card-body {
+  position: absolute;
+  
+  padding: 2em;
+}
+.card-icons .card-link i {
+  font-size: 1.5rem;
+}
+.card-custom:hover {
+  transform: scale(1.1);
+}
+
+.card-footer i {
+  transition: transform 0.3s;
+}
+
+.card-footer i:hover {
+  transform: scale(1.2);
+}
+
+.circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 5px;
+}
+
+.red{
+  background-color: red;
+  box-shadow: 2px 2px 0px rgba(1, 1, 1, 0.5);
+}
+.yellow{
+  background-color: yellow;
+  box-shadow: 2px 2px 0px rgba(1, 1, 1, 0.5);
+}
+.green{
+  background-color: green;
+  box-shadow: 2px 2px 0px rgba(1, 1, 1, 0.5);
+}
+.blue{
   background-color: blue;
-  border: none;
-  color: #fff;
-  transition: all 0.5s;
-}*/
-
-.btn:hover {
-  background-color: rgb(31, 31, 145);
+  box-shadow: 2px 2px 0px rgba(1, 1, 1, 0.5);
 }
-
-
-.contenedor-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+.pink{
+  background-color: pink;
+  box-shadow: 2px 2px 0px rgba(1, 1, 1, 0.5);
+}
+.purple{
+  background-color: purple;
+  box-shadow: 2px 2px 0px rgba(1, 1, 1, 0.5);
+}
+.circle:hover {
+  transform: scale(1.1);
+}
+footer {
+  position: absolute;
   bottom: 0;
-  z-index: -1;
-  opacity: 0;
-  display: flex;
   width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-}
-
-.contenedor-modal.mostrar {
-  background-color: black;
-  z-index: 1;
-  opacity: 0.9;
-}
-
-.contenedor-modal .modal {
-    width: 55%;
-    display: block;
-    overflow: hidden;
-    position: relative;
-    top: -76px;
-    margin: 0 auto;
-    height: 667px;
-    padding: 50px;
-    background-color: #fff;
-    opacity: 1;
-}
-
-
-
-form input {
-  margin: 15px;
-  padding: 10px;
 }
