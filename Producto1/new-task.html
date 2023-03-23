@@ -8,108 +8,137 @@
     <link rel="stylesheet" href="/Producto1/bootstrap/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="/Producto1/styles/style-newtask.css">
-    
+
     <title>GP-TWO</title>
 </head>
 
 <body>
     <header class="bg-danger shadow-inner">
         <div class="container d-flex justify-content-between align-items-center py-3">
-            <button type="button" class="btn btn-light"> <a href="/Producto1/Dashboard.html">Volver</a></button>
+            <a href="/Producto1/Dashboard.html" class="btn btn-light">
+                <i class="bi bi-arrow-left"></i> Volver
+            </a>
             <h1 class="text-center text-white m-0">Aplicación de GP-2</h1>
             <button class="btn btn-light">
                 <i class="bi bi-x"></i>
             </button>
         </div>
     </header>
-    <div class="container-fluid">
-        <div class="row">
-            <main class="col-lg-9 col-md-8 col-sm-12 no-margin">
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="card card-position">
+
+    <main>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-9">
+              <div id="carouselControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <h2 class="text-center">Lunes</h2>
+                    <div class="color-block dropzone" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+                  </div>
+                  <div class="carousel-item">
+                    <h2 class="text-center">Martes</h2>
+                    <div class="color-block dropzone" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+                  </div>
+                  <div class="carousel-item">
+                    <h2 class="text-center">Miércoles</h2>
+                    <div class="color-block dropzone" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+                  </div>
+                  <div class="carousel-item">
+                    <h2 class="text-center">Jueves</h2>
+                    <div class="color-block dropzone" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+                  </div>
+                  <div class="carousel-item">
+                    <h2 class="text-center">Viernes</h2>
+                    <div class="color-block dropzone" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+                  </div>
+                  <div class="carousel-item overflow-y: auto">
+                    <h2 class="text-center">Sábado</h2>
+                    <div class="color-block dropzone" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+                  </div>
+                  <div class="carousel-item">
+                    <h2 class="text-center">Domingo</h2>
+                    <div class="color-block dropzone" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselControls" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselControls" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+            </div>
+            <div class="col-md-3">
+                <div class="icon-container d-flex justify-content-center mb-3">
+                    <button type="button" class="btn btn-primary add-card-button" data-bs-toggle="modal" data-bs-target="#newCardModal">
+                        <i class="bi bi-plus-lg" style="font-size: 48px;"></i>
+                      </button>
+                  </div>
+                <aside class="dropzone" ondragover="allowDrop(event)" ondrop="drop(event)">
+                    <div class="aside-content">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-12">
+                        <div class="card my-3 draggable" id="card1" draggable="true" ondragstart="drag(event)">
                             <div class="card-body">
-                                <h5 class="card-title">Título card 1</h5>
-                                <p class="card-text">Contenido card 1.</p>
+                              <h5 class="card-title">Título de la tarjeta 1</h5>
+                              <p class="card-text">Contenido de la tarjeta 1. Aquí puedes escribir una breve descripción o información relacionada.</p>
                             </div>
-                        </div>
+                          </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="card">
+                    <div class="col-12">
+                        <div class="card my-3 draggable" id="card2" draggable="true" ondragstart="drag(event)">
                             <div class="card-body">
-                                <h5 class="card-title">Título card 2</h5>
-                                <p class="card-text">Contenido card 2.</p>
+                              <h5 class="card-title">Título de la tarjeta 1</h5>
+                              <p class="card-text">Contenido de la tarjeta 1. Aquí puedes escribir una breve descripción o información relacionada.</p>
                             </div>
-                        </div>
+                          </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Título card 3</h5>
-                                <p class="card-text">Contenido card 3.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Título card 4</h5>
-                                <p class="card-text">Contenido card 4.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </main>
-            <aside class="col-lg-3 col-md-4 col-sm-12 ">
-                <div class="iconnew">
-                    <div class="card-body ">
-                        <i class="bi bi-folder" data-bs-toggle="modal" data-bs-target="#folderModal"></i>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Título card aside</h5>
-                        <p class="card-text">Contenido card aside.</p>
-                    </div>
-                </div>
-            </aside>
-        </div>
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="folderModal" tabindex="-1" aria-labelledby="folderModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="folderModalLabel">Mi formulario</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1"
-                                placeholder="nombre@ejemplo.com">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Mensaje</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary">Enviar</button>
+                  </div>
                 </div>
             </div>
+              </aside>
+            </div>
+          </div>
+          <footer class="row">
+          </footer>
         </div>
-    </div>
+      </main>
 
-    <footer class="bg-dark text-light py-3">
-        <div class="container text-center">
-            Todos los derechos reservados &copy; 2023
+       <!-- Modal -->
+  <div class="modal fade" id="newCardModal" tabindex="-1" aria-labelledby="newCardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newCardModalLabel">Crear nueva tarjeta</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
         </div>
-    </footer>
+        <div class="modal-body">
+          <form id="newCardForm">
+            <div class="mb-3">
+              <label for="cardTitle" class="form-label">Título</label>
+              <input type="text" class="form-control" id="cardTitle" placeholder="Escribe el título">
+            </div>
+            <div class="mb-3">
+              <label for="cardContent" class="form-label">Contenido</label>
+              <textarea class="form-control" id="cardContent" rows="3" placeholder="Escribe el contenido"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-primary" id="acceptButton">Crear</button>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <script src="/Producto1/scripts/add-new-card.js"></script>
+      <script src="/Producto1/scripts/drag-and-drop.js"></script>
     <script src="/Producto1/bootstrap/bootstrap.bundle.min.js"></script>
 </body>
+
 
 </html>

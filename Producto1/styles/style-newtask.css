@@ -15,41 +15,37 @@ body {
     background-attachment: fixed;
   }
 
-
-
-/* Estilos adicionales para el main y las cards */
+/* Estilos para el main */
 main {
-    margin-bottom: 1rem;
+    margin-top: 20px;
+    
+  }
+ .color-block{
+  
+  background-color: #c4c4c4be;
+  backdrop-filter: blur(5px);
+  width: 100%;
+  min-height: 500px;
+ }
+  
+ .add-card-button {
+  width: 70px;
+  height: 70px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.card  {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    transition: 0.3s;
-    min-height: 30em;
+aside {
+  height: calc(100vh - 100px); /* ajusta el valor "100px" si el encabezado tiene un tamaño diferente */
+  overflow-y: auto;
 }
 
-.iconnew {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100px; /* Ajusta la altura según prefieras */
+.aside-content {
+  width: 100%;
 }
 
-.iconnew i {
-    font-size: 2rem;
-}
-
-.card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-}
-
-.card-title {
-    font-weight: bold;
-}
-
-.card-text {
-    color: #666;
-}
 
 footer {
     position: absolute;
