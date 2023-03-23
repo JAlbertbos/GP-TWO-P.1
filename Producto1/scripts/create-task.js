@@ -18,7 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
     <div class="card-icons d-flex justify-content-between position-absolute bottom-0 start-0 end-0">
       <a href="#" class="card-link view-icon"><i class="bi bi-eye"></i></a>
-      <a href="#" class="card-link delete-icon"><i class="bi bi-trash"></i></a>
+      <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#eliminarTarjetaModal" data-card-id="${id}"><i class="bi bi-trash"></i></a>
+
     </div>
   </div>
     `;
