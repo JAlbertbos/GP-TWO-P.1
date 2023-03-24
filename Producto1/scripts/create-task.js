@@ -17,8 +17,9 @@ document.addEventListener("DOMContentLoaded", () => {
       <h5 class="card-title">${title}</h5>
     </div>
     <div class="card-icons d-flex justify-content-between position-absolute bottom-0 start-0 end-0">
-      <a href="#" class="card-link view-icon"><i class="bi bi-eye"></i></a>
-      <a href="#" class="card-link delete-icon"><i class="bi bi-trash"></i></a>
+      <a href="/Producto1/new-task.html" class="card-link"><i class="bi bi-eye"></i></a>
+      <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#eliminarTarjetaModal" data-card-id="${id}"><i class="bi bi-trash"></i></a>
+
     </div>
   </div>
     `;
@@ -65,3 +66,47 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+// Agrega el manejador de eventos click al botón de "+"
+const addCardButtons = document.querySelectorAll(".add-card-button");
+addCardButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const carouselItemId = button.closest(".carousel-item").id;
+    addNewCard(carouselItemId);
+  });
+});
+
+function addNewCard(carouselItemId) {
+  // Obtén los valores del formulario
+  const cardTitle = document.getElementById("cardTitle").value;
+  const cardContent = document.getElementById("cardContent").value;
+
+  // Crea una nueva tarjeta con un ID aleatorio
+  const card = document.createElement("div");
+  card.className = "card my-3";
+  card.draggable = "true";
+  card.ondragstart = (event) => drag(event);
+  card.id = generateRandomId();
+
+  const cardBody = document.createElement("div");
+  cardBody.className = "card-body";
+
+  const title = document.createElement("h5");
+  title.className = "card-title";
+  title.innerText = cardTitle;
+
+  const content = document.createElement("p");
+  content.className = "card-text";
+  content.innerText = cardContent;
+
+  // Añade el contenido a la tarjeta
+  cardBody.appendChild(title);
+  cardBody.appendChild(content);
+  card.appendChild(cardBody);
+
+  // Añade la tarjeta a la diapositiva correspondiente del carrusel
+  const carouselItem = document.getElementById(carouselItemId);
+  const dropzone = carouselItem.querySelector(".dropzone");
+  dropzone.appendChild(card);
+
+}

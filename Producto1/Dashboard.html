@@ -5,9 +5,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="/Producto1/bootstrap/bootstrap.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
-  <link rel="stylesheet" href="/styles/Dashboard.css">
+  <link rel="stylesheet" href="/Producto1/styles/Dashboard.css">
   <title>GP-TWO</title>
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -31,8 +31,8 @@
             <h5 class="card-title">Semana 1</h5>
           </div>
           <div class="card-icons d-flex justify-content-between position-absolute bottom-0 start-0 end-0">
-            <a href="/new-task.html" class="card-link"><i class="bi bi-eye"></i></a>
-            <a href="#" class="card-link"><i class="bi bi-trash"></i></a>
+            <a href="/Producto1/new-task.html" class="card-link"><i class="bi bi-eye"></i></a>
+            <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#eliminarTarjetaModal" data-card-id="1"><i class="bi bi-trash"></i></a>
           </div>
         </div>
       </div>
@@ -42,8 +42,8 @@
             <h5 class="card-title">Semana 2</h5>
           </div>
           <div class="card-icons d-flex justify-content-between position-absolute bottom-0 start-0 end-0">
-            <a href="/new-task.html" class="card-link"><i class="bi bi-eye"></i></a>
-            <a href="#" class="card-link"><i class="bi bi-trash"></i></a>
+            <a href="/Producto1/new-task.html" class="card-link"><i class="bi bi-eye"></i></a>
+            <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#eliminarTarjetaModal" data-card-id="1"><i class="bi bi-trash"></i></a>
           </div>
         </div>
       </div>
@@ -53,8 +53,8 @@
             <h5 class="card-title">Semana 3</h5>
           </div>
           <div class="card-icons d-flex justify-content-between position-absolute bottom-0 start-0 end-0">
-            <a href="/new-task.html" class="card-link"><i class="bi bi-eye"></i></a>
-            <a href="#" class="card-link"><i class="bi bi-trash"></i></a>
+            <a href="/Producto1/new-task.html" class="card-link"><i class="bi bi-eye"></i></a>
+            <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#eliminarTarjetaModal" data-card-id="1"><i class="bi bi-trash"></i></a>
           </div>
         </div>
       </div>
@@ -62,11 +62,9 @@
   </main>
   <footer class="bg-dark text-light py-3">
     <div class="container text-center">
-      Todos los derechos reservados &copy; 2023
-    </div>
+      Producto 1 - Desarrollo Full Stack con Javascript y servicios Web
   </footer>
   <!-- Modal -->
-  <script src="/scripts/validate-panel.js"></script>
   <div class="modal fade" id="nuevaSemanaModal" tabindex="-1" aria-labelledby="nuevaSemanaModalLabel"
     aria-hidden="true">
     <div class="modal-dialog">
@@ -76,42 +74,42 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
         </div>
         <div class="modal-body">
-          <form id="cardForm">
+          <form id="cardForm" method="post" >
             <div class="mb-3">
-              <input type="text" class="form-control" id="name" placeholder="Nombre" required>
+              <input type="text" class="form-control" placeholder="Numero de Semana" required>
             </div>
             <div class="row">
               <div class="col-md-4 mb-3">
-                <input type="number" class="form-control" id="day" placeholder="Día Inicial" min="1" max="31" required>
+                <input type="number" class="form-control" placeholder="Día Inicial" min="1" max="31" required>
               </div>
               <div class="col-md-4 mb-3">
-                <input type="number" class="form-control" id="month" placeholder="Mes" min="1" max="12" required>
+                <input type="number" class="form-control" placeholder="Mes" min="1" max="12" required>
               </div>
               <div class="col-md-4 mb-3">
-                <input type="text" class="form-control" id="year" placeholder="Año" required>
+                <input type="number" class="form-control" placeholder="Año" required>
               </div>
             </div>
+            <!-- HACER QUE SALGA TODA LA INFORMACION EN LA TARJETA-->
             <div class="d-flex flex-wrap justify-content-between mb-3">
               <div class="circle red" data-color="red"></div>
-              <div class="circle yellow" data-color="yellow"></div>
+              <div class="circle yellow " data-color="yellow"></div>
               <div class="circle green" data-color="green"></div>
               <div class="circle blue" data-color="blue"></div>
               <div class="circle pink" data-color="pink"></div>
               <div class="circle purple" data-color="purple"></div>
             </div>
             <div class="mb-3">
-              <textarea class="form-control" id="description" placeholder="Descripción" rows="3"></textarea>
+              <textarea class="form-control" placeholder="Descripción" rows="3" required></textarea>
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+              <button  class="btn btn-success" id="confirmButton" onclick="validarFormulario()"><i class="bi bi-check"></i></button>
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-x"></i></button>
             </div>
           </form>
-        </div>
-        <div class="modal-footer d-flex justify-content-between">
-          <button type="submit" class="btn btn-success" id="confirmButton"><i class="bi bi-check"></i></button>
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-x"></i></button>
         </div>
       </div>
     </div>
   </div>
-  
   <!-- Modal para confirmar eliminación de tarjeta -->
 <div class="modal fade" id="eliminarTarjetaModal" tabindex="-1" aria-labelledby="eliminarTarjetaModalLabel"
 aria-hidden="true">
@@ -132,12 +130,11 @@ aria-hidden="true">
 </div>
 <!--TENEMOS QUE HACER QUE LA TARJETA POR DEFAULT SEA NEGRA-->
 </div>
-  <script src="/scripts/select-color.js"></script>
-  <script src="/scripts/delete-week.js"></script>
-  <script src="/scripts/create-task.js"></script>
-  <script src="/scripts/validate-panel.js"></script>
-  <script src="/scripts/remove-element.js"></script>
-  <script src="/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="/Producto1/scripts/select-color.js"></script>
+  <script src="/Producto1/scripts/delete-week.js"></script>
+  <script src="/Producto1/scripts/create-task.js"></script>
+  <script src="/Producto1/scripts/remove-element.js"></script>
+  <script src="/Producto1/bootstrap/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
