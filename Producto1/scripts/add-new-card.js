@@ -6,8 +6,12 @@ function generateRandomId() {
 
   function addNewCard() {
     // Obtén los valores del formulario
-    const cardTitle = document.getElementById("cardTitle").value;
-    const cardContent = document.getElementById("cardContent").value;
+    const taskName = document.getElementById("taskName").value;
+    const taskDescription = document.getElementById("taskDescription").value;
+    const startTime = document.getElementById("startTime").value;
+    const endTime = document.getElementById("endTime").value;
+    const taskLocation = document.getElementById("taskLocation").value;
+    const participants = document.getElementById("participants").value;
   
     // Crea una nueva tarjeta con un ID aleatorio
     const card = document.createElement("div");
@@ -17,19 +21,53 @@ function generateRandomId() {
     card.id = generateRandomId();
   
     const cardBody = document.createElement("div");
-    cardBody.className = "card-body";
+    cardBody.className = "card-body d-flex justify-content-between";
+  
+    const contentWrapper = document.createElement("div");
   
     const title = document.createElement("h5");
     title.className = "card-title";
-    title.innerText = cardTitle;
+    title.innerText = taskName;
   
-    const content = document.createElement("p");
-    content.className = "card-text";
-    content.innerText = cardContent;
+    const description = document.createElement("p");
+    description.className = "card-text";
+    description.innerText = `Descripción: ${taskDescription}`;
   
-    // Añade el contenido a la tarjeta
-    cardBody.appendChild(title);
-    cardBody.appendChild(content);
+    const time = document.createElement("p");
+    time.className = "card-text";
+    time.innerText = `Hora de inicio: ${startTime} - Hora de final: ${endTime}`;
+  
+    const location = document.createElement("p");
+    location.className = "card-text";
+    location.innerText = `Lugar: ${taskLocation}`;
+  
+    const people = document.createElement("p");
+    people.className = "card-text";
+    people.innerText = `Participantes: ${participants}`;
+  
+    // Añade el contenido al contentWrapper
+    contentWrapper.appendChild(title);
+    contentWrapper.appendChild(description);
+    contentWrapper.appendChild(time);
+    contentWrapper.appendChild(location);
+    contentWrapper.appendChild(people);
+  
+    // Crea el checkbox y añade el controlador de eventos
+    const completeCheckbox = document.createElement("input");
+    completeCheckbox.type = "checkbox";
+    completeCheckbox.className = "form-check-input";
+    completeCheckbox.style.marginTop = "1rem";
+    completeCheckbox.addEventListener("change", () => {
+      if (completeCheckbox.checked) {
+        card.style.backgroundColor = "#28a745"; // verde
+      } else {
+        card.style.backgroundColor = ""; // color por defecto
+      }
+    });
+  
+    // Añade el contenido y el checkbox a la tarjeta
+    cardBody.appendChild(contentWrapper);
+    cardBody.appendChild(completeCheckbox);
     card.appendChild(cardBody);
   
     // Añade la tarjeta al aside
@@ -37,8 +75,13 @@ function generateRandomId() {
     asideContent.appendChild(card);
   
     // Limpia los campos del formulario y cierra el modal
-    document.getElementById("cardTitle").value = "";
-    document.getElementById("cardContent").value = "";
-    const addCardModal = bootstrap.Modal.getInstance(document.getElementById("addCardModal"));
-    addCardModal.hide();
+    document.getElementById("taskName").value = "";
+    document.getElementById("taskDescription").value = "";
+    document.getElementById("startTime").value = "";
+    document.getElementById("endTime").value = "";
+    document.getElementById("taskLocation").value = "";
+    document.getElementById("participants").value = "";
+    const newCardModal = bootstrap.Modal.getInstance(document.getElementById("newCardModal"));
+    newCardModal.hide();
   }
+  

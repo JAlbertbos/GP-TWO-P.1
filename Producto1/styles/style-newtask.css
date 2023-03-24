@@ -18,7 +18,27 @@ body {
 /* Estilos para el main */
 main {
     margin-top: 20px;
-    
+  }
+  .carousel-control-custom {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .carousel-control-prev-icon-custom,
+  .carousel-control-next-icon-custom {
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+  }
+  .add-card-button-left {
+    position: absolute;
+    left: -90px;
+    top: 50%;
+    transform: translateY(-50%);
   }
  .color-block{
   
@@ -38,14 +58,15 @@ main {
 }
 
 aside {
-  height: calc(100vh - 100px); /* ajusta el valor "100px" si el encabezado tiene un tamaño diferente */
-  overflow-y: auto;
+  height: 28.5em;
+   overflow-y: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  background-color: blue;
 }
-
 .aside-content {
   width: 100%;
 }
-
 
 footer {
     position: absolute;

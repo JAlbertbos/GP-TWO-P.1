@@ -42,7 +42,7 @@
             <h5 class="card-title">Semana 2</h5>
           </div>
           <div class="card-icons d-flex justify-content-between position-absolute bottom-0 start-0 end-0">
-            <a href="#" class="card-link"><i class="bi bi-eye"></i></a>
+            <a href="/Producto1/new-task.html" class="card-link"><i class="bi bi-eye"></i></a>
             <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#eliminarTarjetaModal" data-card-id="1"><i class="bi bi-trash"></i></a>
           </div>
         </div>
@@ -53,7 +53,7 @@
             <h5 class="card-title">Semana 3</h5>
           </div>
           <div class="card-icons d-flex justify-content-between position-absolute bottom-0 start-0 end-0">
-            <a href="#" class="card-link"><i class="bi bi-eye"></i></a>
+            <a href="/Producto1/new-task.html" class="card-link"><i class="bi bi-eye"></i></a>
             <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#eliminarTarjetaModal" data-card-id="1"><i class="bi bi-trash"></i></a>
           </div>
         </div>
@@ -74,9 +74,9 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
         </div>
         <div class="modal-body">
-          <form id="cardForm">
+          <form id="cardForm" method="post" >
             <div class="mb-3">
-              <input type="text" class="form-control" placeholder="Nombre" required>
+              <input type="text" class="form-control" placeholder="Numero de Semana" required>
             </div>
             <div class="row">
               <div class="col-md-4 mb-3">
@@ -89,6 +89,7 @@
                 <input type="number" class="form-control" placeholder="Año" required>
               </div>
             </div>
+            <!-- HACER QUE SALGA TODA LA INFORMACION EN LA TARJETA-->
             <div class="d-flex flex-wrap justify-content-between mb-3">
               <div class="circle red" data-color="red"></div>
               <div class="circle yellow " data-color="yellow"></div>
@@ -100,11 +101,11 @@
             <div class="mb-3">
               <textarea class="form-control" placeholder="Descripción" rows="3" required></textarea>
             </div>
+            <div class="modal-footer d-flex justify-content-between">
+              <button  class="btn btn-success" id="confirmButton" onclick="validarFormulario()"><i class="bi bi-check"></i></button>
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-x"></i></button>
+            </div>
           </form>
-        </div>
-        <div class="modal-footer d-flex justify-content-between">
-          <button type="submit" class="btn btn-success" id="confirmButton"><i class="bi bi-check"></i></button>
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-x"></i></button>
         </div>
       </div>
     </div>
