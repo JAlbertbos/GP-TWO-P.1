@@ -44,6 +44,13 @@ document.addEventListener("DOMContentLoaded", () => {
     cardContainer.remove();
   }
 
+  function mostrarModal(mensaje) {
+    const modal = new bootstrap.Modal(document.getElementById("genericModal"));
+    const mensajeModal = document.getElementById("genericModalMessage");
+    mensajeModal.innerText = mensaje;
+    modal.show();
+  }
+
   confirmBtn.addEventListener("click", (e) => {
     var formulario = document.getElementById("cardForm");
     var inputsRequeridos = formulario.querySelectorAll("[required]");
@@ -68,28 +75,28 @@ document.addEventListener("DOMContentLoaded", () => {
       // Expresión regular para validar el valor del campo numero de semana
       const nameRegex = /^Semana (0?[1-9]|[1-4][0-9]|5[0-3])$/;
       if (!nameRegex.test(name)) {
-        alert("Por favor ingrese un nombre válido (Semana XX, donde XX es un número del 1 al 53).");
+        mostrarModal("Por favor ingrese un nombre válido (Semana XX, donde XX es un número del 1 al 53).");
         return;
       }
 
       // Expresión regular para validar el valor del campo de día
       const dayRegex = /^(0?[1-9]|[12][0-9]|3[01])$/;
       if (!dayRegex.test(day)) {
-        alert("Por favor ingrese un día válido (entre 1 y 31).");
-       return;
+        mostrarModal("Por favor ingrese un día válido (entre 1 y 31).");
+        return;
       }
 
       // Expresión regular para validar el valor del campo de mes
       const monthRegex = /^(0?[1-9]|1[0-2])$/;
       if (!monthRegex.test(month)) {
-        alert("Por favor ingrese un mes válido (entre 1 y 12).");
+        mostrarModal("Por favor ingrese un mes válido (entre 1 y 12).");
         return;
       }
 
       // Expresión regular para validar el valor del campo de año
       const yearRegex = /^\d{4}$/;
       if (!yearRegex.test(year)) {
-        alert("Por favor ingrese un año válido (formato: AAAA).");
+        mostrarModal("Por favor ingrese un año válido (formato: AAAA).");
         return;
       }
 
@@ -105,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Limpiar el formulario
       cardForm.reset();
     } else {
-      alert("Por favor complete todos los campos requeridos.");
+      mostrarModal("Faltan campos por completar");
     }
   });
 

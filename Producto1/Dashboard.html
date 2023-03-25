@@ -81,13 +81,14 @@
             </div>
             <div class="row">
               <div class="col-md-4 mb-3">
-                <input type="number" id="day" class="form-control" placeholder="Día Inicial" min="1" max="31">
+                <input type="number" id="day" class="form-control" placeholder="Día Inicial" min="1" max="31" required>
               </div>
               <div class="col-md-4 mb-3">
-                <input type="number" id="month" class="form-control" placeholder="Mes" min="1" max="12">
+                <input type="number" id="month" class="form-control" placeholder="Mes" min="1" max="12" required>
               </div>
               <div class="col-md-4 mb-3">
-                <input type="number" id="year" class="form-control" placeholder="Año" min="2000" max="3000" required>
+                <!--El minimo y maximo no lo coge-->
+                <input type="number" id="year" class="form-control" placeholder="Año" required>
               </div>
             </div>
             <div class="d-flex flex-wrap justify-content-between mb-3">
@@ -111,6 +112,25 @@
       </div>
     </div>
   </div>
+
+  <!-- Modal genérica -->
+  <div class="modal fade" id="genericModal" tabindex="-1" aria-labelledby="genericModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title" id="genericModalLabel">Error</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p id="genericModalMessage"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
   <!-- Modal para confirmar eliminación de tarjeta -->
 <div class="modal fade" id="eliminarTarjetaModal" tabindex="-1" aria-labelledby="eliminarTarjetaModalLabel"
 aria-hidden="true">
@@ -129,7 +149,7 @@ aria-hidden="true">
     </div>
   </div>
 </div>
-<!--TENEMOS QUE HACER QUE LA TARJETA POR DEFAULT SEA NEGRA-->
+
 </div>
   <script src="/Producto1/scripts/select-color.js"></script>
   <script src="/Producto1/scripts/delete-week.js"></script>
