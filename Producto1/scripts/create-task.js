@@ -65,6 +65,13 @@ document.addEventListener("DOMContentLoaded", () => {
       let year = document.getElementById("year").value;
       let description = document.getElementById("description").value;
 
+      // Expresión regular para validar el valor del campo numero de semana
+      const nameRegex = /^Semana (0?[1-9]|[1-4][0-9]|5[0-3])$/;
+      if (!nameRegex.test(name)) {
+        alert("Por favor ingrese un nombre válido (Semana XX, donde XX es un número del 1 al 53).");
+        return;
+      }
+
       // Expresión regular para validar el valor del campo de día
       const dayRegex = /^(0?[1-9]|[12][0-9]|3[01])$/;
       if (!dayRegex.test(day)) {
