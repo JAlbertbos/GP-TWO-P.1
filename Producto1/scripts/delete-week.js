@@ -1,15 +1,16 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // Obtén todos los elementos con la clase 'bi-trash'
-    const trashIcons = document.querySelectorAll(".bi-trash");
+// Obtener el botón Eliminar y el modal Eliminar tarjeta
+const eliminarTarjetaBtn = document.querySelector("#eliminarTarjetaBtn");
+const eliminarTarjetaModal = document.querySelector("#eliminarTarjetaModal");
 
-    // Agrega un evento de clic a cada icono de basura
-    trashIcons.forEach((icon) => {
-        icon.addEventListener("click", function (event) {
-            // Encuentra el elemento card más cercano
-            const card = event.target.closest(".card");
+// Agregar un evento click al botón Eliminar
+eliminarTarjetaBtn.addEventListener("click", eliminarTarjeta);
 
-            // Elimina la tarjeta
-            card.parentNode.removeChild(card);
-        });
-    });
-});
+// Definir la función para eliminar la tarjeta y cerrar el modal
+function eliminarTarjeta() {
+  // Aquí va el código para eliminar la tarjeta
+
+  // Cerrar el modal
+  eliminarTarjetaModal.classList.remove("show");
+  eliminarTarjetaModal.setAttribute("aria-hidden", "true");
+  eliminarTarjetaModal.setAttribute("style", "display: none");
+}
