@@ -94,28 +94,28 @@ deleteCardBtn.addEventListener("click", () => {
       let year = document.getElementById("year").value;
       let description = document.getElementById("description").value;
 
-      // Expresión regular para validar el valor del campo numero de semana
+      // validar campo numero de semana
       const nameRegex = /^Semana (0?[1-9]|[1-4][0-9]|5[0-3])$/;
       if (!nameRegex.test(name)) {
         mostrarModal("Por favor ingrese un nombre válido (Semana XX, donde XX es un número del 1 al 53).");
         return;
       }
 
-      // Expresión regular para validar el valor del campo de día
+      // validar  día
       const dayRegex = /^(0?[1-9]|[12][0-9]|3[01])$/;
       if (!dayRegex.test(day)) {
         mostrarModal("Por favor ingrese un día válido (entre 1 y 31).");
         return;
       }
 
-      // Expresión regular para validar el valor del campo de mes
+      // validar  campo de mes
       const monthRegex = /^(0?[1-9]|1[0-2])$/;
       if (!monthRegex.test(month)) {
         mostrarModal("Por favor ingrese un mes válido (entre 1 y 12).");
         return;
       }
 
-      // Expresión regular para validar el valor del campo de año
+      // validar  campo de año
       const yearRegex = /^\d{4}$/;
       if (!yearRegex.test(year)) {
         mostrarModal("Por favor ingrese un año válido (formato: AAAA).");

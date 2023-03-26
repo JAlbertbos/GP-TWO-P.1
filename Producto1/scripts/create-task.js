@@ -65,8 +65,8 @@ form.addEventListener('submit', function(event) {
   if (!dropzone) {
     dropzone = document.querySelector('.zone-bottom');
   }
-  
   dropzone.appendChild(tarjeta);
+
   selectedDay = undefined;
   const checkbox = tarjeta.querySelector('.form-check-input');
   checkbox.addEventListener('change', function () {
