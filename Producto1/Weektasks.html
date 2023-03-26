@@ -125,7 +125,23 @@
     </div>
 
 
-
+ <!-- Modal genérica -->
+ <div class="modal fade" id="genericModal" tabindex="-1" aria-labelledby="genericModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="genericModalLabel">Error</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <p id="genericModalMessage"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
  <!-- Modal con el formulario -->
@@ -139,13 +155,13 @@
       <div class="modal-body">
         <form>
           <div class="mb-3">
-            <input type="text" class="form-control" id="nombreTarea" placeholder="Nombre de tarea">
+            <input type="text" class="form-control" id="nombreTarea" placeholder="Nombre de tarea" required>
           </div>
           <div class="mb-3">
-            <textarea class="form-control" id="descripcion" rows="3" placeholder="Descripción"></textarea>
+            <textarea class="form-control" id="descripcion" rows="3" placeholder="Descripción" required></textarea>
           </div>
           <div class="mb-3">
-            <input type="time" class="form-control" id="horaInicio" placeholder="Hora de inicio">
+            <input type="time" class="form-control" id="horaInicio" placeholder="Hora de inicio" required>
           </div>
           <div class="mb-3">
             <input type="time" class="form-control" id="horaFinal" placeholder="Hora de final">

@@ -83,6 +83,61 @@ form.addEventListener('submit', function(event) {
   const botonEliminar = tarjeta.querySelector('.eliminar-tarea');
   botonEliminar.addEventListener('click', function () {
     tarjeta.remove();
-
   });
+
+  // Generar el mensaje de error por falta de campos requeridos
+  function mostrarModal(mensaje) {
+    const modal = new bootstrap.Modal(document.getElementById("genericModal"));
+    const mensajeModal = document.getElementById("genericModalMessage");
+    mensajeModal.innerText = mensaje;
+    modal.show();
+  }
+
+  confirmBtn.addEventListener("click", (e) => {
+    var formulario = document.getElementById("cardForm");
+    var inputsRequeridos = formulario.querySelectorAll("[required]");
+  
+    var valido = true;
+  
+    for (var i = 0; i < inputsRequeridos.length; i++) {
+      if (!inputsRequeridos[i].value) {
+        valido = false;
+        break;
+      }
+    }
+ 
+    if (valido) {
+      e.preventDefault();
+      let name = document.getElementById("nombreTarea").value;
+      let initTime = document.getElementById("horaInicio").value;
+      let description = document.getElementById("descripcion").value;
+      
+    
+
+      // Expresión regular para validar el nombre de tarea
+    
+
+      // Expresión regular para validar la hora de inicio
+   
+
+      // Expresión regular para validar la descripción
+ 
+
+
+      const id = generateRandomId();
+
+      createCard(name, id, day, month, year, description);
+
+      // Cerrar el modal
+      const nuevaTareaModal = document.getElementById("nuevaTareaModal");
+      const modal = bootstrap.Modal.getInstance(nuevaTareaModal);
+      modal.hide();
+
+      // Limpiar el formulario
+      cardForm.reset();
+    } else {
+      mostrarModal("Faltan campos por completar");
+    }
+  });
+
 });
