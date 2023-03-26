@@ -1,6 +1,6 @@
 
 document.addEventListener("DOMContentLoaded", () => {
-  const addCardBtn = document.getElementById("addCard");
+  
   const confirmBtn = document.getElementById("confirmButton");
   const cardForm = document.getElementById("cardForm");
 
