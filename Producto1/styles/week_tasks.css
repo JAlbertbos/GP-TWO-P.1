@@ -1,0 +1,68 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Changa&display=swap');
+
+*{
+  font-family: 'Changa', sans-serif;
+
+}
+
+body {
+  background-image: url('/Producto1/img/background.png');
+  background-size: cover;
+  background-attachment: fixed;
+}
+.contenedor-dia {
+  display: flex;
+  flex-direction: column;
+  min-height: 40em;
+  min-width: 25em;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+}
+
+.contenedor-dia .card-header {
+  padding: .5rem 1rem;
+  margin-bottom: 0;
+  background-color: rgba(0,0,0,.03);
+  border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+.contenedor-dia .card-body {
+  flex: 1 1 auto;
+  padding: 1rem;
+}
+
+.contenedor-dia .card-footer {
+  padding: .5rem 1rem;
+  background-color: rgba(0,0,0,.03);
+  border-top: 1px solid rgba(0,0,0,.125);
+}
+.zone-bottom{
+  min-height: 200px;
+ 
+  box-shadow: inset 0px 0px 10px rgba(98, 98, 98, 0.338);
+  background-color: rgba(110, 110, 110, 0.104);
+  margin-top: 2em;
+  
+}
+.card-header {
+  text-align: center;
+}
+
+.footer-fixed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.borde-verde {
+  border-color: #00cc00;
+}
+.form-check-input:checked {
+  background-color: green;
+  border-color: green;
+}
