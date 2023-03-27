@@ -4,10 +4,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const confirmBtn = document.getElementById("confirmButton");
   const cardForm = document.getElementById("cardForm");
 
+  //Funcion para generar id random
   function generateRandomId() {
     return Math.floor(Math.random() * 1000000);
   }
-
+  //Creacion de tarjetas
   function createCard(name, id, day, month, year, description) {
     const cardContainer = document.createElement("div");
     cardContainer.classList.add("col-md-4", "mb-4");
@@ -60,7 +61,7 @@ deleteCardBtn.addEventListener("click", () => {
 });
     
   }
-
+ // La función deleteCard elimina una tarjeta del DOM.
   function deleteCard(cardContainer) {
     cardContainer.remove();
   }
