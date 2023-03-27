@@ -1,5 +1,5 @@
 
-let selectedColor = "red";
+let selectedColor = "black";
 const circles = document.querySelectorAll(".circle");
 const description = document.querySelector("textarea");
 

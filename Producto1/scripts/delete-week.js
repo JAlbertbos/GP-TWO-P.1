@@ -1,15 +1,30 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // Obtén todos los elementos con la clase 'bi-trash'
-    const trashIcons = document.querySelectorAll(".bi-trash");
+document.addEventListener("DOMContentLoaded", () => {
+  let selectedCard = null;
 
-    // Agrega un evento de clic a cada icono de basura
-    trashIcons.forEach((icon) => {
-        icon.addEventListener("click", function (event) {
-            // Encuentra el elemento card más cercano
-            const card = event.target.closest(".card");
-
-            // Elimina la tarjeta
-            card.parentNode.removeChild(card);
-        });
+  // Escuchar eventos de click en los iconos de eliminar
+  const deleteIcons = document.querySelectorAll(".bi-trash");
+  deleteIcons.forEach((icon) => {
+    icon.addEventListener("click", (event) => {
+      const card = event.target.closest(".card");
+      selectedCard = card;
     });
+  });
+
+  // Escuchar evento de click en el botón de eliminar tarjeta
+  const deleteCardBtn = document.querySelector("#eliminarTarjetaBtn");
+  deleteCardBtn.addEventListener("click", () => {
+    if (selectedCard) {
+      selectedCard.closest('.col-md-4.mb-4').remove();
+      selectedCard = null;
+      const eliminarTarjetaModalEl = document.getElementById("eliminarTarjetaModal");
+      const eliminarTarjetaModal = bootstrap.Modal.getInstance(eliminarTarjetaModalEl);
+      eliminarTarjetaModal.hide();
+    }
+  });
 });
+
+
+
+
+
+

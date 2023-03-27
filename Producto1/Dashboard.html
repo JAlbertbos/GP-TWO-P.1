@@ -10,8 +10,7 @@
   <link rel="stylesheet" href="/Producto1/styles/Dashboard.css">
   <title>GP-TWO</title>
 </head>
-
-<body>
+<body class="d-flex flex-column min-vh-100">
   <header class="bg-danger shadow-inner">
     <div class="container d-flex justify-content-between align-items-center py-3">
       <button type="button" class="btn btn-primary" id="addCard" data-bs-toggle="modal"
@@ -24,38 +23,41 @@
       </button>
     </div>
   </header>
-  <main class="container my-5">
+  <main class="container my-5 flex-grow-1">
     <div class="row">
       <div class="col-md-4 mb-4">
         <div class="card shadow-sm card-square" data-id="1">
           <div class="card-body">
-            <h5 class="card-title">Semana 1</h5>
+            <h5 class="card-title"><b>Semana 1</b></h5>
           </div>
           <div class="card-icons d-flex justify-content-between position-absolute bottom-0 start-0 end-0">
-            <a href="/Producto1/new-task.html" class="card-link"><i class="bi bi-eye"></i></a>
-            <a href="#" class="card-link"><i class="bi bi-trash"></i></a>
+            <a href="/Producto1/Weektasks.html" class="card-link"><i class="bi bi-eye"></i></a>
+            <a href="#" class="card-link"><i class="bi bi-trash" data-bs-toggle="modal"
+              data-bs-target="#eliminarTarjetaModal"></i></a>
           </div>
         </div>
       </div>
       <div class="col-md-4 mb-4">
         <div class="card shadow-sm card-square" data-id="2">
           <div class="card-body">
-            <h5 class="card-title">Semana 2</h5>
+            <h5 class="card-title"><b>Semana 2</b></h5>
           </div>
           <div class="card-icons d-flex justify-content-between position-absolute bottom-0 start-0 end-0">
-            <a href="#" class="card-link"><i class="bi bi-eye"></i></a>
-            <a href="#" class="card-link"><i class="bi bi-trash"></i></a>
+            <a href="/Producto1/Weektasks.html" class="card-link"><i class="bi bi-eye"></i></a>
+            <a href="#" class="card-link"><i class="bi bi-trash" data-bs-toggle="modal"
+              data-bs-target="#eliminarTarjetaModal"></i></a>
           </div>
         </div>
       </div>
       <div class="col-md-4 mb-4">
         <div class="card shadow-sm card-square" data-id="3">
           <div class="card-body">
-            <h5 class="card-title">Semana 3</h5>
+            <h5 class="card-title"><b>Semana 3</b></h5>
           </div>
           <div class="card-icons d-flex justify-content-between position-absolute bottom-0 start-0 end-0">
-            <a href="#" class="card-link"><i class="bi bi-eye"></i></a>
-            <a href="#" class="card-link"><i class="bi bi-trash"></i></a>
+            <a href="/Producto1/Weektasks.html" class="card-link"><i class="bi bi-eye"></i></a>
+            <a href="#" class="card-link"><i class="bi bi-trash" data-bs-toggle="modal"
+              data-bs-target="#eliminarTarjetaModal"></i></a>
           </div>
         </div>
       </div>
@@ -63,10 +65,9 @@
   </main>
   <footer class="bg-dark text-light py-3">
     <div class="container text-center">
-      Todos los derechos reservados &copy; 2023
+      Producto 1 - Desarrollo Full Stack con Javascript y servicios Web
     </div>
   </footer>
-
   <!-- Modal -->
   <div class="modal fade" id="nuevaSemanaModal" tabindex="-1" aria-labelledby="nuevaSemanaModalLabel"
     aria-hidden="true">
@@ -79,20 +80,21 @@
         <div class="modal-body">
           <form id="cardForm">
             <div class="mb-3">
-              <input type="text" class="form-control" placeholder="Nombre" required>
+              <input type="text" id="name" class="form-control" placeholder="Nombre" required>
             </div>
             <div class="row">
               <div class="col-md-4 mb-3">
-                <input type="number" class="form-control" placeholder="Día Inicial" min="1" max="31" required>
+                <input type="number" id="day" class="form-control" placeholder="Día Inicial" min="1" max="31" required>
               </div>
               <div class="col-md-4 mb-3">
-                <input type="number" class="form-control" placeholder="Mes" min="1" max="12" required>
+                <input type="number" id="month" class="form-control" placeholder="Mes" min="1" max="12" required>
               </div>
               <div class="col-md-4 mb-3">
-                <input type="number" class="form-control" placeholder="Año" required>
+                <input type="number" id="year" class="form-control" placeholder="Año" min="1900" required>
               </div>
             </div>
             <div class="d-flex flex-wrap justify-content-between mb-3">
+              <div class="circle black" data-color="black"></div>
               <div class="circle red" data-color="red"></div>
               <div class="circle yellow " data-color="yellow"></div>
               <div class="circle green" data-color="green"></div>
@@ -101,20 +103,59 @@
               <div class="circle purple" data-color="purple"></div>
             </div>
             <div class="mb-3">
-              <textarea class="form-control" placeholder="Descripción" rows="3" required></textarea>
+              <textarea class="form-control" id="description" placeholder="Descripción" rows="3"></textarea>
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+              <button type="submit" class="btn btn-success" id="confirmButton"><i class="bi bi-check"></i></button>
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-x"></i></button>
             </div>
           </form>
-        </div>
-        <div class="modal-footer d-flex justify-content-between">
-          <button type="submit" class="btn btn-success" id="confirmButton"><i class="bi bi-check"></i></button>
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-x"></i></button>
         </div>
       </div>
     </div>
   </div>
+  <!-- Modal genérica -->
+  <div class="modal fade" id="genericModal" tabindex="-1" aria-labelledby="genericModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title" id="genericModalLabel">Error</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p id="genericModalMessage"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<!-- Modal para confirmar eliminación de tarjeta -->
+<div class="modal fade" id="eliminarTarjetaModal" tabindex="-1" aria-labelledby="eliminarTarjetaModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-header bg-danger text-white">
+      <h5 class="modal-title" id="eliminarTarjetaModalLabel">Eliminar tarjeta</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+    </div>
+    <div class="modal-body">
+      <p>¿Estás seguro de que quieres eliminar esta tarjeta?</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+      <button type="button" class="btn btn-danger" id="eliminarTarjetaBtn">Eliminar</button>
+    </div>
+  </div>
+</div>
+</div>
+
+
   <script src="/Producto1/scripts/select-color.js"></script>
+  <script src="/Producto1/scripts/create-week.js"></script>
   <script src="/Producto1/scripts/delete-week.js"></script>
-  <script src="/Producto1/scripts/create-task.js"></script>
   <script src="/Producto1/bootstrap/bootstrap.bundle.min.js"></script>
 </body>
 
