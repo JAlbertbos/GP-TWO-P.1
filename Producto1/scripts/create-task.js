@@ -45,7 +45,7 @@ form.addEventListener('submit', function(event) {
   <div class="card-body">
     <div class="d-flex align-items-center justify-content-between">
       <h5 class="card-title">${nombreTarea.value}</h5>
-      <button type="button"  class="btn btn-link p-0 eliminar-tarea">${iconoPapelera.outerHTML}</button>
+      <button type="button" data-bs-toggle="modal" data-bs-target="#eliminarTareaModal" class="btn btn-link p-0">${iconoPapelera.outerHTML}</button>
     </div>
     <p class="card-text">${descripcion.value}</p>
     <ul class="list-group list-group-flush">
@@ -97,18 +97,31 @@ form.addEventListener('submit', function(event) {
 
   
 
-  // PAPELERITA PARA ELIMINAR!
-const botonEliminar = tarjeta.querySelector('.eliminar-tarea');
-botonEliminar.addEventListener('click', function () {
-tarjeta.remove();
-//selectedDay = undefined; // reiniciar la variable | NO ARREGLA EL BUG
-});
+// Seleccionar el botón de la papelera de la tarjeta recién creada
+const eliminarTareaBtn = tarjeta.querySelector('.eliminar-tarea');
+
+// Agregar un event listener al botón
+eliminarTareaBtn.addEventListener('click', function() {
+  // Abrir el modal de eliminación
+  const eliminarTareaModal = document.getElementById('eliminarTareaModal');
+  eliminarTareaModal.addEventListener('shown.bs.modal', function () {
+    // Agregar un event listener al botón de confirmación del modal
+    const confirmarEliminacionBtn = document.getElementById('eliminarTareaBotn');
+    confirmarEliminacionBtn.addEventListener('click', function() {
+      // Eliminar la tarjeta
+      tarjeta.remove();
+
+      // Ocultar el modal de eliminación
+      const modal = bootstrap.Modal.getInstance(eliminarTareaModal);
+      modal.hide();
+    });
+  });
+  bootstrap.Modal.getInstance(eliminarTareaModal).show();
 });
 
-const botonEliminar = tarjeta.querySelector('.eliminar-tarea');
-  botonEliminar.addEventListener('click', function () {
-    tarjeta.remove();
-  });
+});
+
+
 
   // Generar el mensaje de error por falta de campos requeridos
   function mostrarModal(mensaje) {
