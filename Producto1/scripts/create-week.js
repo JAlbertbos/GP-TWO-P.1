@@ -97,7 +97,7 @@ deleteCardBtn.addEventListener("click", () => {
       // validar campo numero de semana
       const nameRegex = /^Semana (0?[1-9]|[1-4][0-9]|5[0-3])$/;
       if (!nameRegex.test(name)) {
-        mostrarModal("Por favor ingrese un nombre válido (Semana XX, donde XX es un número del 1 al 53).");
+        mostrarModal("Por favor ingrese un nombre.");
         return;
       }
 

@@ -128,13 +128,13 @@
           <div class="modal-body">
             <form>
               <div class="mb-3">
-                <input type="text" class="form-control" id="nombreTarea" placeholder="Nombre de tarea">
+                <input type="text" class="form-control" id="nombreTarea" placeholder="Nombre de tarea" required>
               </div>
               <div class="mb-3">
-                <textarea class="form-control" id="descripcion" rows="3" placeholder="Descripción"></textarea>
+                <textarea class="form-control" id="descripcion" rows="3" placeholder="Descripción" required></textarea>
               </div>
               <div class="mb-3">
-                <input type="time" class="form-control" id="horaInicio" placeholder="Hora de inicio">
+                <input type="time" class="form-control" id="horaInicio" placeholder="Hora de inicio" required>
               </div>
               <div class="mb-3">
                 <input type="time" class="form-control" id="horaFinal" placeholder="Hora de final">
@@ -151,7 +151,8 @@
               </div>
               <div class="modal-footer">
                 <button type="submit" id="saveButton" class="btn btn-success"><i class="bi bi-check"></i></button>
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-x"></i></button>
+                <button type="button" class="btn btn-danger"><i class="bi bi-x" data-bs-toggle="modal"
+                  data-bs-target="#eliminarTareaModal"></i></button>
               </div>
             </form>
           </div>
@@ -159,28 +160,31 @@
       </div>
     </div>
 
-    <!-- Modal para confirmar eliminación de tarjeta -->
-    <div class="modal fade" id="eliminarTarjetaModal" tabindex="-1" aria-labelledby="eliminarTarjetaModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header bg-danger text-white">
-            <h5 class="modal-title" id="eliminarTarjetaModalLabel">Eliminar tarjeta</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-          </div>
-          <div class="modal-body">
-            <p>¿Estás seguro de que quieres eliminar esta tarjeta?</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-danger" id="eliminarTarjetaBtn">Eliminar</button>
-          </div>
-        </div>
-      </div>
+    <!-- Modal para confirmar eliminación de tarea -->
+<div class="modal fade" id="eliminarTareaModal" tabindex="-1" aria-labelledby="eliminarTareaModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-header bg-danger text-white">
+      <h5 class="modal-title" id="eliminarTareaModalLabel">Eliminar tarea</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+    </div>
+    <div class="modal-body">
+      <p>¿Estás seguro de que quieres eliminar esta tarea?</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="card-link"><button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+        data-bs-target="#formtask">Cancelar</button></a>
+      <a href="#" class="card-link"><button type="button" class="btn btn-danger"  data-bs-toggle="modal"
+        data-bs-target="#eliminarTareModal">Eliminar</button></a>
+    </div>
+  </div>
+</div>
+
 
       <script src="/Producto1/bootstrap/bootstrap.bundle.min.js"></script>
       <script src="/Producto1/scripts/create-task.js"></script>
-
+      <script src="/Producto1/scripts/delete-task.js"></script>
 
       <!-- HAY QUE ARREGLAR EL FOOTER, ESTA COGIDO CON PINZAS!-->
       <footer class="footer-fixed bg-dark text-light py-3">
