@@ -1,16 +1,30 @@
-// Obtener el botón Eliminar y el modal Eliminar tarjeta
-const eliminarTarjetaBtn = document.querySelector("#eliminarTarjetaBtn");
-const eliminarTarjetaModal = document.querySelector("#eliminarTarjetaModal");
+document.addEventListener("DOMContentLoaded", () => {
+  let selectedCard = null;
 
-// Agregar un evento click al botón Eliminar
-eliminarTarjetaBtn.addEventListener("click", eliminarTarjeta);
+  // Escuchar eventos de click en los iconos de eliminar
+  const deleteIcons = document.querySelectorAll(".bi-trash");
+  deleteIcons.forEach((icon) => {
+    icon.addEventListener("click", (event) => {
+      const card = event.target.closest(".card");
+      selectedCard = card;
+    });
+  });
 
-// Definir la función para eliminar la tarjeta y cerrar el modal
-function eliminarTarjeta() {
-  // Aquí va el código para eliminar la tarjeta
+  // Escuchar evento de click en el botón de eliminar tarjeta
+  const deleteCardBtn = document.querySelector("#eliminarTarjetaBtn");
+  deleteCardBtn.addEventListener("click", () => {
+    if (selectedCard) {
+      selectedCard.closest('.col-md-4.mb-4').remove();
+      selectedCard = null;
+      const eliminarTarjetaModalEl = document.getElementById("eliminarTarjetaModal");
+      const eliminarTarjetaModal = bootstrap.Modal.getInstance(eliminarTarjetaModalEl);
+      eliminarTarjetaModal.hide();
+    }
+  });
+});
 
-  // Cerrar el modal
-  eliminarTarjetaModal.classList.remove("show");
-  eliminarTarjetaModal.setAttribute("aria-hidden", "true");
-  eliminarTarjetaModal.setAttribute("style", "display: none");
-}
+
+
+
+
+
