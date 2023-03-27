@@ -90,7 +90,6 @@ form.addEventListener('submit', function(event) {
     tarjeta.remove();
   });
 
-  let tarjetaCreada;
   // Lapiz edicion
   const botonEditar = tarjeta.querySelector('.editar-tarea');
 botonEditar.addEventListener('click', function () {
