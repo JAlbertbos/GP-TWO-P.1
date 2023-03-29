@@ -132,7 +132,7 @@ eliminarTareaBtn.addEventListener('click', function() {
   }
 
   confirmBtn.addEventListener("click", (e) => {
-    var formulario = document.getElementById("cardForm");
+    var formulario = document.getElementById("taskForm");
     var inputsRequeridos = formulario.querySelectorAll("[required]");
   
     var valido = true;
@@ -150,21 +150,32 @@ eliminarTareaBtn.addEventListener('click', function() {
       let initTime = document.getElementById("horaInicio").value;
       let description = document.getElementById("descripcion").value;
       
+      // validar  Nombre
+        const nameRegex = /^[a-zA-ZáéíóúñÁÉÍÓÚÑ\s]+$/;
+        if (!nameRegex.test(name)) {
+          mostrarModal("Por favor rellene el campo.");
+          return;
+        }
     
-
-      // Expresión regular para validar el nombre de tarea
-    
-
-      // Expresión regular para validar la hora de inicio
+      // validar Hora de Inicio
+      const initTimeRegex = /^([01]\d|2[0-3]):([0-5]\d)$/;
+      if (!initTimeRegex.test(initTime)) {
+        mostrarModal("Por favor ingrese una hora de inicio válida en formato HH:MM.");
+        return;
+      }
    
-
-      // Expresión regular para validar la descripción
+      // validar Descripcion
+      const descriptionRegex = /^[a-zA-Z0-9áéíóúñÁÉÍÓÚÑ\s]+$/;
+      if (!descriptionRegex.test(description)) {
+        mostrarModal("Por favor ingrese una descripción válida (solo letras, números y espacios).");
+        return;
+      }
  
 
 
       const id = generateRandomId();
 
-      createCard(name, id, day, month, year, description);
+      createCard(name, initTime, description);
 
       // Cerrar el modal
       const nuevaTareaModal = document.getElementById("nuevaTareaModal");
