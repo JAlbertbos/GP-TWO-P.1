@@ -25,7 +25,7 @@ const participantes = document.querySelector('#participantes');
 const ubicacion = document.querySelector('#ubicacion');
 const tareaTerminada = document.querySelector('#tareaTerminada');
 const iconoPapelera = document.createElement('i');
-iconoPapelera.classList.add('bi', 'bi-trash-fill', 'ms-2');
+iconoPapelera.classList.add('bi', 'bi-trash-fill', 'ms-2', 'eliminar-tarea', 'text-danger');
 // Controlador de eventos para el formulario
 form.addEventListener('submit', function (event) {
   event.preventDefault();
@@ -56,8 +56,7 @@ form.addEventListener('submit', function (event) {
     <div class="card-body">
       <div class="d-flex align-items-center justify-content-between">
         <h5 class="card-title">${nombreTarea.value}</h5>
-        <button type="button"  data-bs-toggle="modal"
-        data-bs-target="#eliminarTarjetModal" class="btn btn-link p-0 eliminar-tarea">${iconoPapelera.outerHTML}</button>
+        <button type="button"  class="btn btn-link p-0 eliminar-tarea">${iconoPapelera.outerHTML}</button>
       </div>
       <p class="card-text">${descripcion.value}</p>
       <ul class="list-group list-group-flush">
