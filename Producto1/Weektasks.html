@@ -202,6 +202,26 @@ aria-hidden="true">
   </div>
 </div>
 
+<!-- Modal para confirmar eliminación de tarjeta EN COMUNA -->
+<div class="modal fade" id="eliminarTarjetModal" tabindex="-1" aria-labelledby="eliminarTarjetModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-header bg-danger text-white">
+      <h5 class="modal-title" id="eliminarTarjetModalLabel">Eliminar tarjeta</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+    </div>
+    <div class="modal-body">
+      <p>¿Estás seguro de que quieres eliminar esta tarjeta?</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+      <button type="button" class="btn btn-danger" id="eliminarTarjetBotton">Eliminar</button>
+    </div>
+  </div>
+</div>
+</div>
+
   <script src="/Producto1/bootstrap/bootstrap.bundle.min.js"></script>
   <script src="/Producto1/scripts/create-task.js"></script>
   <script src="/Producto1/scripts/verify-data-task.js"></script>
