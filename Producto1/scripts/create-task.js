@@ -1,20 +1,26 @@
+
+//Funcion de arrastrar
 function allowDrop(event) {
   event.preventDefault();
 }
+//Funcion de soltar
 function drop(event) {
   event.preventDefault();
   var data = event.dataTransfer.getData("text");
   var element = document.getElementById(data);
   event.target.appendChild(element);
 }
+
 let selectedDay;
-// Controlador de eventos para los botones
-document.querySelectorAll('[data-day]').forEach(button => {
-  button.addEventListener('click', function () {
+
+// Los botones tienen data-day diferente, y asi puede diferenciar los botones para cuando se clicka.
+var buttons = document.querySelectorAll('[data-day]');
+for (var i = 0; i < buttons.length; i++) {
+  buttons[i].addEventListener('click', function () {
     selectedDay = this.getAttribute('data-day');
   });
-});
-// Obtener elementos del formulario
+}
+// Obtener info del formulario
 const form = document.querySelector('#formtask form');
 const nombreTarea = document.querySelector('#nombreTarea');
 const descripcion = document.querySelector('#descripcion');
@@ -25,20 +31,21 @@ const ubicacion = document.querySelector('#ubicacion');
 const tareaTerminada = document.querySelector('#tareaTerminada');
 const iconoPapelera = document.createElement('i');
 iconoPapelera.classList.add('bi', 'bi-trash-fill', 'ms-2', 'eliminar-tarea', 'text-danger');
-// Controlador de eventos para el formulario
-form.addEventListener('submit', function(event) {
-  event.preventDefault();
 
-  // Crear la tarjeta con los datos del formulario
+// Se dispara cuando se le da al boto de submit
+form.addEventListener('submit', function(event) {
+  event.preventDefault(); //evitar que se refresque la pagina
+
+  // Crea una tarjeta(card, ella bilingüe) con la info del form
   const tarjeta = document.createElement('div');
   const idTarjeta = Date.now().toString(); // Generar un ID único para la tarjeta
-  tarjeta.id = `tarjeta-${idTarjeta}`; // Agregar el ID a la tarjeta
-  tarjeta.classList.add('card', 'my-3', 'draggable');
+  tarjeta.id = `tarjeta-${idTarjeta}`;
+  tarjeta.classList.add('card', 'my-3'); //Le da las clases que necesita
   tarjeta.innerHTML = `
   <div class="card-body">
     <div class="d-flex align-items-center justify-content-between">
       <h5 class="card-title">${nombreTarea.value}</h5>
-      <button type="button"  class="btn btn-link p-0 eliminar-tarea">${iconoPapelera.outerHTML}</button>
+      <button type="button" data-bs-toggle="modal" data-bs-target="#eliminarTareaModal" class="btn btn-link p-0">${iconoPapelera.outerHTML}</button>
     </div>
     <p class="card-text">${descripcion.value}</p>
     <ul class="list-group list-group-flush">
@@ -51,17 +58,18 @@ form.addEventListener('submit', function(event) {
       <input class="form-check-input" type="checkbox" id="tarea-${nombreTarea.value}">
       <label class="form-check-label" for="tarea-${nombreTarea.value}">Tarea terminada</label>
     </div>
-    <div class="mt-auto d-flex justify-content-end">
-    <button type="button" class="btn btn-link p-0 editar-tarea"><i class="bi bi-pencil-square text-primary"></i></button>
-    </div>
-    </div>
-    
   </div>
 `;
-  tarjeta.setAttribute('draggable', true);
+  tarjeta.setAttribute('draggable', true); //Que se pueda agarrar y mover
+  currentSelectedDay = selectedDay;
+
+  //  Hace que las tarjetas puedan ser arrastrables y hace posible moverlas por la página utilizando su ID
   tarjeta.addEventListener('dragstart', function (event) {
     event.dataTransfer.setData('text/plain', this.id);
   });
+
+
+//Aqui vamos a hacer que diferencie las dropzones mediante los botones  y ponga las cards bien
 
   let dropzone;
   if (selectedDay) {
@@ -70,9 +78,10 @@ form.addEventListener('submit', function(event) {
   if (!dropzone) {
     dropzone = document.querySelector('.zone-bottom');
   }
-  
   dropzone.appendChild(tarjeta);
+  //REINICIAR LA VARIABLE!
   selectedDay = undefined;
+  //Cuando se pulsa el check box el borde se pone verde
   const checkbox = tarjeta.querySelector('.form-check-input');
   checkbox.addEventListener('change', function () {
     if (this.checked) {
@@ -85,10 +94,6 @@ form.addEventListener('submit', function(event) {
   const modal = bootstrap.Modal.getInstance(document.querySelector('#formtask'));
   modal.hide();
   form.reset();
-  const botonEliminar = tarjeta.querySelector('.eliminar-tarea');
-  botonEliminar.addEventListener('click', function () {
-    tarjeta.remove();
-  });
 
   // Lapiz edicion
   const botonEditar = tarjeta.querySelector('.editar-tarea');
@@ -102,30 +107,32 @@ botonEditar.addEventListener('click', function () {
   const ubicacionEdit = document.querySelector('#ubicacion');
   const tareaTerminadaEdit = document.querySelector('#tareaTerminada');
   
-  // Obtener la información de la tarjeta creada
-  const titulo = tarjeta.querySelector('.card-title').innerText;
-  const desc = tarjeta.querySelector('.card-text').innerText;
-  const horaInicio = tarjeta.querySelector('.list-group-item:nth-child(1)').innerText.replace('Hora de inicio: ','');
-  const horaFinal = tarjeta.querySelector('.list-group-item:nth-child(2)').innerText.replace('Hora de final: ','');
-  const participantes = tarjeta.querySelector('.list-group-item:nth-child(3)').innerText.replace('Participantes: ','');
-  const ubicacion = tarjeta.querySelector('.list-group-item:nth-child(4)').innerText.replace('Ubicación: ','');
-  const tareaTerminada = tarjeta.querySelector('.form-check-input').checked;
-  
-  // Rellenar los campos del modal con la información de la tarjeta
-  nombreTareaEdit.value = titulo;
-  descripcionEdit.value = desc;
-  horaInicioEdit.value = horaInicio;
-  horaFinalEdit.value = horaFinal;
-  participantesEdit.value = participantes;
-  ubicacionEdit.value = ubicacion;
-  tareaTerminadaEdit.checked = tareaTerminada;
-  
-  // Mostrar el modal
-  const modal = new bootstrap.Modal(document.getElementById("formtask"));
-  modal.show();
+
+// Seleccionar el botón de la papelera de la tarjeta recién creada
+const eliminarTareaBtn = tarjeta.querySelector('.eliminar-tarea');
+
+// Agregar un event listener al botón
+eliminarTareaBtn.addEventListener('click', function() {
+  // Abrir el modal de eliminación
+  const eliminarTareaModal = document.getElementById('eliminarTareaModal');
+  eliminarTareaModal.addEventListener('shown.bs.modal', function () {
+    // Agregar un event listener al botón de confirmación del modal
+    const confirmarEliminacionBtn = document.getElementById('eliminarTareaBotn');
+    confirmarEliminacionBtn.addEventListener('click', function() {
+      // Eliminar la tarjeta
+      tarjeta.remove();
+
+      // Ocultar el modal de eliminación
+      const modal = bootstrap.Modal.getInstance(eliminarTareaModal);
+      modal.hide();
+    });
+  });
+  bootstrap.Modal.getInstance(eliminarTareaModal).show();
 });
 
-tarjetaCreada = tarjeta;
+});
+
+
 
   // Generar el mensaje de error por falta de campos requeridos
   function mostrarModal(mensaje) {
@@ -136,7 +143,7 @@ tarjetaCreada = tarjeta;
   }
 
   confirmBtn.addEventListener("click", (e) => {
-    var formulario = document.getElementById("cardForm");
+    var formulario = document.getElementById("taskForm");
     var inputsRequeridos = formulario.querySelectorAll("[required]");
   
     var valido = true;
@@ -154,19 +161,32 @@ tarjetaCreada = tarjeta;
       let initTime = document.getElementById("horaInicio").value;
       let description = document.getElementById("descripcion").value;
       
+      // validar  Nombre
+        const nameRegex = /^[a-zA-ZáéíóúñÁÉÍÓÚÑ\s]+$/;
+        if (!nameRegex.test(name)) {
+          mostrarModal("Por favor rellene el campo.");
+          return;
+        }
     
-
-      // Expresión regular para validar el nombre de tarea
-    
-
-      // Expresión regular para validar la hora de inicio
+      // validar Hora de Inicio
+      const initTimeRegex = /^([01]\d|2[0-3]):([0-5]\d)$/;
+      if (!initTimeRegex.test(initTime)) {
+        mostrarModal("Por favor ingrese una hora de inicio válida en formato HH:MM.");
+        return;
+      }
    
-
-      // Expresión regular para validar la descripción
+      // validar Descripcion
+      const descriptionRegex = /^[a-zA-Z0-9áéíóúñÁÉÍÓÚÑ\s]+$/;
+      if (!descriptionRegex.test(description)) {
+        mostrarModal("Por favor ingrese una descripción válida (solo letras, números y espacios).");
+        return;
+      }
  
+
+
       const id = generateRandomId();
 
-      createCard(name, id, day, month, year, description);
+      createCard(name, initTime, description);
 
       // Cerrar el modal
       const nuevaTareaModal = document.getElementById("nuevaTareaModal");
@@ -179,6 +199,3 @@ tarjetaCreada = tarjeta;
       mostrarModal("Faltan campos por completar");
     }
   });
-  form.reset(); // REINICIAR FORMULARIO PARA EDICION SIN BUGS!
-});
-
