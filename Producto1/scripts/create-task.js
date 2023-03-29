@@ -51,11 +51,6 @@ form.addEventListener('submit', function(event) {
       <input class="form-check-input" type="checkbox" id="tarea-${nombreTarea.value}">
       <label class="form-check-label" for="tarea-${nombreTarea.value}">Tarea terminada</label>
     </div>
-    <div class="mt-auto d-flex justify-content-end">
-    <button type="button" class="btn btn-link p-0 editar-tarea"><i class="bi bi-pencil-square text-primary"></i></button>
-    </div>
-    </div>
-    
   </div>
 `;
   tarjeta.setAttribute('draggable', true);
@@ -89,44 +84,6 @@ form.addEventListener('submit', function(event) {
   botonEliminar.addEventListener('click', function () {
     tarjeta.remove();
   });
-
-  let tarjetaCreada;
-  // Lapiz edicion
-  const botonEditar = tarjeta.querySelector('.editar-tarea');
-botonEditar.addEventListener('click', function () {
-  // Obtener los elementos del formulario
-  const nombreTareaEdit = document.querySelector('#nombreTarea');
-  const descripcionEdit = document.querySelector('#descripcion');
-  const horaInicioEdit = document.querySelector('#horaInicio');
-  const horaFinalEdit = document.querySelector('#horaFinal');
-  const participantesEdit = document.querySelector('#participantes');
-  const ubicacionEdit = document.querySelector('#ubicacion');
-  const tareaTerminadaEdit = document.querySelector('#tareaTerminada');
-  
-  // Obtener la información de la tarjeta creada
-  const titulo = tarjeta.querySelector('.card-title').innerText;
-  const desc = tarjeta.querySelector('.card-text').innerText;
-  const horaInicio = tarjeta.querySelector('.list-group-item:nth-child(1)').innerText.replace('Hora de inicio: ','');
-  const horaFinal = tarjeta.querySelector('.list-group-item:nth-child(2)').innerText.replace('Hora de final: ','');
-  const participantes = tarjeta.querySelector('.list-group-item:nth-child(3)').innerText.replace('Participantes: ','');
-  const ubicacion = tarjeta.querySelector('.list-group-item:nth-child(4)').innerText.replace('Ubicación: ','');
-  const tareaTerminada = tarjeta.querySelector('.form-check-input').checked;
-  
-  // Rellenar los campos del modal con la información de la tarjeta
-  nombreTareaEdit.value = titulo;
-  descripcionEdit.value = desc;
-  horaInicioEdit.value = horaInicio;
-  horaFinalEdit.value = horaFinal;
-  participantesEdit.value = participantes;
-  ubicacionEdit.value = ubicacion;
-  tareaTerminadaEdit.checked = tareaTerminada;
-  
-  // Mostrar el modal
-  const modal = new bootstrap.Modal(document.getElementById("formtask"));
-  modal.show();
-});
-
-tarjetaCreada = tarjeta;
 
   // Generar el mensaje de error por falta de campos requeridos
   function mostrarModal(mensaje) {
@@ -165,6 +122,8 @@ tarjetaCreada = tarjeta;
 
       // Expresión regular para validar la descripción
  
+
+
       const id = generateRandomId();
 
       createCard(name, id, day, month, year, description);
@@ -180,6 +139,5 @@ tarjetaCreada = tarjeta;
       mostrarModal("Faltan campos por completar");
     }
   });
-  form.reset(); // REINICIAR FORMULARIO PARA EDICION SIN BUGS!
-});
 
+});
