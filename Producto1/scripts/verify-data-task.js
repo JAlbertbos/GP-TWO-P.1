@@ -1,3 +1,9 @@
+
+
+const modalElement = document.getElementById("genericModal");
+const mensajeModal = document.getElementById("genericModalMessage");
+const confirmBtn = document.getElementById("confirmBtn"); // Asegúrate de agregar el atributo id="confirmBtn" en tu botón de confirmación en el HTML
+const modal = new bootstrap.Modal(modalElement);
 // Mostrar el mensaje de error por falta de campos requeridos
 function mostrarModal(mensaje) {
     mensajeModal.innerText = mensaje;

@@ -126,7 +126,7 @@
 
 
  <!-- Modal genérica -->
- <div class="modal fade" id="genericModal" tabindex="-1" aria-labelledby="genericModalLabel" aria-hidden="true">
+<div class="modal fade" id="genericModal" tabindex="-1" aria-labelledby="genericModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header bg-danger text-white">
@@ -186,23 +186,6 @@
     </div>
   </div>
 </div>
-<!-- Modal genérica -->
-<div class="modal fade" id="genericModal" tabindex="-1" aria-labelledby="genericModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header bg-danger text-white">
-        <h5 class="modal-title" id="genericModalLabel">Error</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-      </div>
-      <div class="modal-body">
-        <p id="genericModalMessage"></p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- Modal para confirmar eliminación de tarea -->
 <div class="modal fade" id="eliminarTareaModal" tabindex="-1" aria-labelledby="eliminarTareaModalLabel"
@@ -217,10 +200,8 @@ aria-hidden="true">
       <p>¿Estás seguro de que quieres eliminar esta tarea?</p>
     </div>
     <div class="modal-footer">
-      <a href="#" class="card-link"><button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-        data-bs-target="#formtask">Cancelar</button></a>
-      <a href="#" class="card-link"><button type="button" class="btn btn-danger"  data-bs-toggle="modal"
-        data-bs-target="#eliminarTareModal">Eliminar</button></a>
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+      <button type="button" class="btn btn-danger" id="confirmDelete">Eliminar</button>
     </div>
   </div>
 </div>
