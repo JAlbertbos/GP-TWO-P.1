@@ -24,6 +24,23 @@ document.addEventListener("DOMContentLoaded", () => {
       eliminarTareaModal.hide();
   }
 });
+
+       // Mostrar el modal de confirmación de eliminación
+       const eliminarTarjetModalEl = document.getElementById("eliminarTarjetModal");
+       const eliminarTarjetModal = new bootstrap.Modal(eliminarTarjetModalEl);
+       eliminarTarjetModal.show();
+    });
+
+  const deleteCardBotton = document.querySelector("#eliminarTarjetBotton");
+  deleteCardBotton.addEventListener("click", () => {
+    if (selectedCard) {
+      selectedCard.closest('.my-3').remove();
+      selectedCard.closest()
+      selectedCard = null;
+      const eliminarTarjetModalEl = document.getElementById("eliminarTarjetModal");
+      const eliminarTarjetModal = bootstrap.Modal.getInstance(eliminarTarjetModalEl);
+      eliminarTarjetModal.hide();
+    }
 });
 
 
