@@ -25,9 +25,12 @@ const ubicacion = document.querySelector('#ubicacion');
 const tareaTerminada = document.querySelector('#tareaTerminada');
 const iconoPapelera = document.createElement('i');
 iconoPapelera.classList.add('bi', 'bi-trash-fill', 'ms-2', 'eliminar-tarea', 'text-danger');
+
 // Controlador de eventos para el formulario
 form.addEventListener('submit', function(event) {
   event.preventDefault();
+
+  
 
   // Crear la tarjeta con los datos del formulario
   const tarjeta = document.createElement('div');
@@ -93,7 +96,7 @@ form.addEventListener('submit', function(event) {
   let tarjetaCreada;
   // Lapiz edicion
   const botonEditar = tarjeta.querySelector('.editar-tarea');
-botonEditar.addEventListener('click', function () {
+  botonEditar.addEventListener('click', function () {
   // Obtener los elementos del formulario
   const nombreTareaEdit = document.querySelector('#nombreTarea');
   const descripcionEdit = document.querySelector('#descripcion');
@@ -158,12 +161,24 @@ tarjetaCreada = tarjeta;
     
 
       // Expresión regular para validar el nombre de tarea
-    
+      if (!name) {
+        mostrarModal("Por favor ingrese un título.");
+        return;
+      }
 
       // Expresión regular para validar la hora de inicio
-   
+      const initTimeRegex = /^([0-1][0-9]|2[0-3]):[0-5][0-9]$/;
+      if (!initTimeRegex.test(initTime)) {
+        mostrarModal("Por favor ingrese una hora válida (formato: HH:MM).");
+        return;
+      }
 
       // Expresión regular para validar la descripción
+      const descriptionRegex = /^.{1,100}$/;
+      if (!descriptionRegex.test(description)) {
+        mostrarModal("Por favor ingrese una descripción de máximo 100 caracteres.");
+        return;
+      }
  
       const id = generateRandomId();
 
@@ -182,4 +197,3 @@ tarjetaCreada = tarjeta;
   });
   form.reset(); // REINICIAR FORMULARIO PARA EDICION SIN BUGS!
 });
-
