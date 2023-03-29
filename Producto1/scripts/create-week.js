@@ -37,9 +37,9 @@ document.addEventListener("DOMContentLoaded", () => {
     mainRow.appendChild(cardContainer);
   
     // Escuchar eventos de click en los iconos de eliminar
-const deleteIcons = document.querySelectorAll(".bi-trash");
-deleteIcons.forEach((icon) => {
-  icon.addEventListener("click", (event) => {
+    const deleteIcons = document.querySelectorAll(".bi-trash");
+    deleteIcons.forEach((icon) => {
+    icon.addEventListener("click", (event) => {
     const card = event.target.closest(".card");
     const cardId = card.getAttribute("data-id");
     const deleteCardBtn = document.getElementById("eliminarTarjetaBtn");
@@ -93,6 +93,7 @@ deleteCardBtn.addEventListener("click", () => {
       let week = document.getElementById("week").value;
       let month = document.getElementById("month").value;
       let year = document.getElementById("year").value;
+      let description = document.getElementById("description").value;
 
       // validar  Nombre
       const nameRegex = /^[a-zA-ZáéíóúñÁÉÍÓÚÑ\s]+$/;
