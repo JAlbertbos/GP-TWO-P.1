@@ -186,6 +186,23 @@
     </div>
   </div>
 </div>
+<!-- Modal genérica -->
+<div class="modal fade" id="genericModal" tabindex="-1" aria-labelledby="genericModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="genericModalLabel">Error</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <p id="genericModalMessage"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Modal para confirmar eliminación de tarea -->
 <div class="modal fade" id="eliminarTareaModal" tabindex="-1" aria-labelledby="eliminarTareaModalLabel"
@@ -210,6 +227,7 @@ aria-hidden="true">
 
   <script src="/Producto1/bootstrap/bootstrap.bundle.min.js"></script>
   <script src="/Producto1/scripts/create-task.js"></script>
+  <script src="/Producto1/scripts/verify-data-task.js"></script>
   <script src="/Producto1/scripts/delete-task.js"></script>
   <footer class="footer-fixed bg-dark text-light py-3">
   <div class="container text-center">
