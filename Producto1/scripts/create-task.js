@@ -138,6 +138,7 @@ form.addEventListener('submit', function (event) {
       // Mostrar el modal
       const modal = new bootstrap.Modal(document.getElementById("formtask"));
       modal.show();
+      
     });
 
   }

@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const eliminarTareaModal = bootstrap.Modal.getInstance(eliminarTareaModalEl);
       eliminarTareaModal.hide();
   }
+  
 });
 });
 
