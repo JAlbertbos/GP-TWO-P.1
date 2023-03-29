@@ -125,28 +125,13 @@
     </div>
 
 
- <!-- Modal genérica -->
-<div class="modal fade" id="genericModal" tabindex="-1" aria-labelledby="genericModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header bg-danger text-white">
-        <h5 class="modal-title" id="genericModalLabel">Error</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-      </div>
-      <div class="modal-body">
-        <p id="genericModalMessage"></p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 
  <!-- Modal con el formulario -->
 <div class="modal fade" id="formtask" tabindex="-1" aria-labelledby="formtaskLabel" aria-hidden="true">
   <div class="modal-dialog">
+    <div class="mb-3">
+      <div id="errors" class="text-danger"></div>
+    </div>
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="formtaskLabel">Nueva Tarea</h5>
@@ -183,6 +168,7 @@
   </div>
 </div>
 
+
 <!-- Modal para confirmar eliminación de tarea -->
 <div class="modal fade" id="eliminarTareaModal" tabindex="-1" aria-labelledby="eliminarTareaModalLabel"
 aria-hidden="true">
@@ -196,36 +182,21 @@ aria-hidden="true">
       <p>¿Estás seguro de que quieres eliminar esta tarea?</p>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-      <button type="button" class="btn btn-danger" id="confirmDelete">Eliminar</button>
+      <a href="#" class="card-link"><button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+        data-bs-target="#formtask">Cancelar</button></a>
+      <a href="#" class="card-link"><button type="button" class="btn btn-danger"  data-bs-toggle="modal"
+        data-bs-target="#eliminarTareModal">Eliminar</button></a>
     </div>
   </div>
+</div>
 </div>
 
-<!-- Modal para confirmar eliminación de tarjeta EN COMUNA -->
-<div class="modal fade" id="eliminarTarjetModal" tabindex="-1" aria-labelledby="eliminarTarjetModalLabel"
-aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered">
-  <div class="modal-content">
-    <div class="modal-header bg-danger text-white">
-      <h5 class="modal-title" id="eliminarTarjetModalLabel">Eliminar tarjeta</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-    </div>
-    <div class="modal-body">
-      <p>¿Estás seguro de que quieres eliminar esta tarjeta?</p>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-      <button type="button" class="btn btn-danger" id="eliminarTarjetBotton">Eliminar</button>
-    </div>
-  </div>
-</div>
-</div>
+  
+
 
   <script src="/Producto1/bootstrap/bootstrap.bundle.min.js"></script>
   <script src="/Producto1/scripts/create-task.js"></script>
   <script src="/Producto1/scripts/verify-data-task.js"></script>
-  <script src="/Producto1/scripts/delete-task.js"></script>
   <footer class="footer-fixed bg-dark text-light py-3">
   <div class="container text-center">
     Producto 1 - Desarrollo Full Stack con Javascript y servicios Web
