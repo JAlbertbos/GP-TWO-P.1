@@ -15,10 +15,6 @@ document.querySelectorAll('[data-day]').forEach(button => {
     selectedDay = this.getAttribute('data-day');
   });
 });
-
-  
- 
-
 // Obtener elementos del formulario
 const form = document.querySelector('#formtask form');
 const nombreTarea = document.querySelector('#nombreTarea');
@@ -31,7 +27,7 @@ const tareaTerminada = document.querySelector('#tareaTerminada');
 const iconoPapelera = document.createElement('i');
 iconoPapelera.classList.add('bi', 'bi-trash-fill', 'ms-2', 'eliminar-tarea', 'text-danger');
 // Controlador de eventos para el formulario
-form.addEventListener('submit', function (event) {
+form.addEventListener('submit', function(event) {
   event.preventDefault();
 
   if (tarjetaAEditar) {
@@ -74,9 +70,6 @@ form.addEventListener('submit', function (event) {
         <input class="form-check-input" type="checkbox" id="tarea-${nombreTarea.value}">
         <label class="form-check-label" for="tarea-${nombreTarea.value}">Tarea terminada</label>
       </div>
-    <div class="mt-auto d-flex justify-content-end">
-    <button type="button"><i class="bi bi-pencil-square text-primary"></i></button> 
-    </div>
       <div class="mt-auto d-flex justify-content-end">
       <button type="button" class="btn btn-link p-0 editar-tarea"><i class="bi bi-pencil-square text-primary"></i></button>
       </div>
@@ -89,86 +82,63 @@ form.addEventListener('submit', function (event) {
       event.dataTransfer.setData('text/plain', this.id);
     });
 
-  let dropzone;
-  if (selectedDay) {
-    dropzone = document.querySelector(`.contenedor-dia[data-day="${selectedDay}"] .dropzone`);
-  }
-  if (!dropzone) {
-    dropzone = document.querySelector('.zone-bottom');
-  }
-  
-  dropzone.appendChild(tarjeta);
-  selectedDay = undefined;
-  const checkbox = tarjeta.querySelector('.form-check-input');
-  checkbox.addEventListener('change', function () {
-    if (this.checked) {
-      tarjeta.classList.add('borde-verde');
-    } else {
-      tarjeta.classList.remove('borde-verde');
+    let dropzone;
+    if (selectedDay) {
+      dropzone = document.querySelector(`.contenedor-dia[data-day="${selectedDay}"] .dropzone`);
     }
-  });
-  // Cerrar el modal y resetear el formulario
-  const modal = bootstrap.Modal.getInstance(document.querySelector('#formtask'));
-  modal.hide();
-  form.reset();
-  const botonEliminar = tarjeta.querySelector('.eliminar-tarea');
-  botonEliminar.addEventListener('click', function () {
-    tarjeta.remove();
-  });
-
-  // Generar el mensaje de error por falta de campos requeridos
-  function mostrarModal(mensaje) {
-    const modal = new bootstrap.Modal(document.getElementById("genericModal"));
-    const mensajeModal = document.getElementById("genericModalMessage");
-    mensajeModal.innerText = mensaje;
-    modal.show();
-  }
-
-  confirmBtn.addEventListener("click", (e) => {
-    var formulario = document.getElementById("cardForm");
-    var inputsRequeridos = formulario.querySelectorAll("[required]");
-  
-    var valido = true;
-  
-    for (var i = 0; i < inputsRequeridos.length; i++) {
-      if (!inputsRequeridos[i].value) {
-        valido = false;
-        break;
+    if (!dropzone) {
+      dropzone = document.querySelector('.zone-bottom');
+    }
+    
+    dropzone.appendChild(tarjeta);
+    selectedDay = undefined;
+    const checkbox = tarjeta.querySelector('.form-check-input');
+    checkbox.addEventListener('change', function () {
+      if (this.checked) {
+        tarjeta.classList.add('borde-verde');
+      } else {
+        tarjeta.classList.remove('borde-verde');
       }
-    }
- 
-    if (valido) {
-      e.preventDefault();
-      let name = document.getElementById("nombreTarea").value;
-      let initTime = document.getElementById("horaInicio").value;
-      let description = document.getElementById("descripcion").value;
-      
-    
+    });
+    // Cerrar el modal y resetear el formulario
+    const modal = bootstrap.Modal.getInstance(document.querySelector('#formtask'));
+    modal.hide();
+    form.reset();
+    const botonEliminar = tarjeta.querySelector('.eliminar-tarea');
+    botonEliminar.addEventListener('click', function () {
+      tarjeta.remove();
+    });
 
-      // Expresión regular para validar el nombre de tarea
-    
+    // Lapiz edicion
+const botonEditar = tarjeta.querySelector('.editar-tarea');
+botonEditar.addEventListener('click', function () {
+  // Guardar la referencia a la tarjeta que se va a editar
+  tarjetaAEditar = tarjeta;
 
-      // Expresión regular para validar la hora de inicio
-   
+  // Obtener la información de la tarjeta creada
+  const titulo = tarjeta.querySelector('.card-title').innerText;
+  const desc = tarjeta.querySelector('.card-text').innerText;
+  const horaInicioTexto = tarjeta.querySelector('.list-group-item:nth-child(1)').innerText.replace('Hora de inicio: ', '');
+  const horaFinalTexto = tarjeta.querySelector('.list-group-item:nth-child(2)').innerText.replace('Hora de final: ', '');
+  const participantes = tarjeta.querySelector('.list-group-item:nth-child(3)').innerText.replace('Participantes: ', '');
+  const ubicacion = tarjeta.querySelector('.list-group-item:nth-child(4)').innerText.replace('Ubicación: ', '');
+  const tareaTerminada = tarjeta.querySelector('.form-check-input').checked;
 
-      // Expresión regular para validar la descripción
- 
+  // Rellenar los campos del modal con la información de la tarjeta
+  nombreTarea.value = titulo;
+  descripcion.value = desc;
+  horaInicio.value = horaInicioTexto;
+  horaFinal.value = horaFinalTexto;
+  participantes.value = participantes;
+  ubicacion.value = ubicacion;
+  tareaTerminada.checked = tareaTerminada;
 
+  // Mostrar el modal
+  const modal = new bootstrap.Modal(document.getElementById("formtask"));
+  modal.show();
+});
 
-      const id = generateRandomId();
+  }
 
-      createCard(name, id, day, month, year, description);
-
-      // Cerrar el modal
-      const nuevaTareaModal = document.getElementById("nuevaTareaModal");
-      const modal = bootstrap.Modal.getInstance(nuevaTareaModal);
-      modal.hide();
-
-      // Limpiar el formulario
-      cardForm.reset();
-    } else {
-      mostrarModal("Faltan campos por completar");
-    }
-  });
-
+  form.reset(); // Reiniciar formulario para edición sin bugs!
 });
