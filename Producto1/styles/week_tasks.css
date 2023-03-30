@@ -14,11 +14,11 @@ body {
 }
 
 .botonvolver{
-  background-color: #778fb3;;
+  background-color: #778fb3;
   border: none;
 }
 .botonvolver:hover{
-  background-color: #778fb3;;
+  background-color: #778fb3;
   border: none;
 }
 .contenedor-dia {
@@ -27,7 +27,8 @@ body {
   min-height: 40em;
   min-width: 25em;
   word-wrap: break-word;
-  background-color: #fff;
+  background-color: #fafafa87;
+  backdrop-filter: blur(8px);
   background-clip: border-box;
   border: 1px solid rgba(0,0,0,.125);
   border-radius: .25rem;
@@ -35,9 +36,16 @@ body {
 .color-rojo{
   background-color: #d90429;
 }
+
 .color-rojo2{
   color: #fff;
   background-color: #ef233c;
+  
+}
+.color-rojo2:hover{
+  background-color: #d90429;
+  color: #fff;
+  box-shadow:  1px 1px 10px rgba(255, 71, 71, 0.8);
 }
 .contenedor-dia .card-header {
   padding: .5rem 1rem;
@@ -49,6 +57,7 @@ body {
 .contenedor-dia .card-body {
   flex: 1 1 auto;
   padding: 1rem;
+  
 }
 
 .contenedor-dia .card-footer {
@@ -88,4 +97,23 @@ footer {
   --bs-btn-bg: #778fb3;
   --bs-btn-border-color: #778fb3;
   color: azure;
+}
+
+/* Estilos para la barra de desplazamiento en Webkit (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #7796b38c;
+  border: none;
+  border-radius: 10px;
+  background-clip: padding-box;
+  border: 2px solid transparent;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #F5F5F5;
 }

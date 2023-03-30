@@ -16,30 +16,28 @@ body {
   font-size: 1.5rem;
 }
 .botonmas{
-  --bs-btn-bg: #778fb3;
-  --bs-btn-border-color: #778fb3;
+ background-color: #778fb3;
   color: azure;
 }
 .botonmas:hover{
-  --bs-btn-bg: #778fb3;
-  --bs-btn-border-color: #778fb3;
-  color: azure;
-}
+  background-color: #778fb3;
+   color: azure;
+   
+ }
+
 
 .card-icons i{
   color: #778fb3;
   margin:2em 1em;
 }
 .shadow-inside {
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
   
 }
 
 .color-rojo{
   background-color: #da3044;
 }
-
-
 
 .card-square {
   position: relative;
@@ -54,7 +52,6 @@ body {
 }
 .card-square .card-body {
   position: absolute;
-  
   padding: 2em;
 }
 .card-link{
