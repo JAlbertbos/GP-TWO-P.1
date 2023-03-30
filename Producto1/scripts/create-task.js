@@ -7,17 +7,15 @@ function drop(event) {
   var element = document.getElementById(data);
   event.target.appendChild(element);
 }
+
 let tarjetaAEditar;
 let selectedDay;
-
-// Controlador de eventos para los botones
 document.querySelectorAll('[data-day]').forEach(button => {
   button.addEventListener('click', function () {
     selectedDay = this.getAttribute('data-day');
   });
 });
 
-// Obtener elementos del formulario
 const form = document.querySelector('#formtask form');
 const nombreTarea = document.querySelector('#nombreTarea');
 const descripcion = document.querySelector('#descripcion');
@@ -30,22 +28,40 @@ const iconoPapelera = document.createElement('i');
 iconoPapelera.classList.add('bi', 'bi-trash-fill', 'ms-2', 'eliminar-tarea', 'text-danger');
 
 
-// Controlador de eventos para el formulario
+function validarCampos() {
+  let mensajeError = '';
+
+  if (nombreTarea.value.trim() === '') {
+    mensajeError = 'El nombre de la tarea no puede estar vacío.';
+  } else if (descripcion.value.trim() === '') {
+    mensajeError = 'La descripción no puede estar vacía.';
+  } else if (horaInicio.value === '') {
+    mensajeError = 'La hora de inicio no puede estar vacía.';
+  } else if (horaFinal.value === '') {
+    mensajeError = 'La hora de final no puede estar vacía.';
+  } else if (participantes.value.trim() === '') {
+    mensajeError = 'Los participantes no pueden estar vacíos.';
+  } else if (ubicacion.value.trim() === '') {
+    mensajeError = 'La ubicación no puede estar vacía.';
+  }
+
+  if (mensajeError) {
+    document.getElementById('genericModalMessage').innerText = mensajeError;
+    const modal = new bootstrap.Modal(document.getElementById('genericModal'));
+    modal.show();
+    return false;
+  }
+
+  return true;
+}
+
 form.addEventListener('submit', function (event) {
   event.preventDefault();
 
-  const modalElement = document.getElementById("genericModal");
-  const mensajeModal = document.getElementById("genericModalMessage");
-
-  function mostrarModal(mensaje) {
-    const modal = new bootstrap.Modal(document.getElementById("genericModal"));
-    const mensajeModal = document.getElementById("genericModalMessage");
-    mensajeModal.innerText = mensaje;
-    modal.show();
+  
+  if (!validarCampos()) {
+    return;
   }
-
-
-
   if (tarjetaAEditar) {
     // Actualizar la tarjeta existente
     tarjetaAEditar.querySelector('.card-title').innerText = nombreTarea.value;
@@ -56,15 +72,15 @@ form.addEventListener('submit', function (event) {
     tarjetaAEditar.querySelector('.list-group-item:nth-child(4)').innerText = `Ubicación: ${ubicacion.value}`;
     tarjetaAEditar.querySelector('.form-check-input').checked = tareaTerminada.checked;
 
-
     // Reiniciar la variable tarjetaAEditar
     tarjetaAEditar = null;
 
+    
     const modal = bootstrap.Modal.getInstance(document.querySelector('#formtask'));
     modal.hide();
     form.reset();
   } else {
-
+    
     // Crear la tarjeta con los datos del formulario
     const tarjeta = document.createElement('div');
     const idTarjeta = Date.now().toString(); // Generar un ID único para la tarjeta
@@ -117,19 +133,18 @@ form.addEventListener('submit', function (event) {
         tarjeta.classList.remove('borde-verde');
       }
     });
-
+    
     // Cerrar el modal y resetear el formulario
     const modal = bootstrap.Modal.getInstance(document.querySelector('#formtask'));
     modal.hide();
     form.reset();
     const botonEliminar = tarjeta.querySelector('.eliminar-tarea');
     botonEliminar.addEventListener('click', function () {
-      const confirmacion = confirm('¿Estás seguro que deseas eliminar la tarjeta?');
-      if (confirmacion) {
-        tarjeta.remove();
-      }
+      selectedCard = tarjeta;
+      const eliminarTareaModalEl = document.getElementById("eliminarTareaModal");
+      const eliminarTareaModal = new bootstrap.Modal(eliminarTareaModalEl);
+      eliminarTareaModal.show();
     });
-
 
     // Lapiz edicion
     const botonEditar = tarjeta.querySelector('.editar-tarea');
@@ -142,8 +157,8 @@ form.addEventListener('submit', function (event) {
       const desc = tarjeta.querySelector('.card-text').innerText;
       const horaInicioTexto = tarjeta.querySelector('.list-group-item:nth-child(1)').innerText.replace('Hora de inicio: ', '');
       const horaFinalTexto = tarjeta.querySelector('.list-group-item:nth-child(2)').innerText.replace('Hora de final: ', '');
-      const participantes = tarjeta.querySelector('.list-group-item:nth-child(3)').innerText.replace('Participantes: ', '');
-      const ubicacion = tarjeta.querySelector('.list-group-item:nth-child(4)').innerText.replace('Ubicación: ', '');
+      const participantesTexto = tarjeta.querySelector('.list-group-item:nth-child(3)').innerText.replace('Participantes: ', '');
+      const ubicacionTexto = tarjeta.querySelector('.list-group-item:nth-child(4)').innerText.replace('Ubicación: ', '');
       const tareaTerminada = tarjeta.querySelector('.form-check-input').checked;
 
       // Rellenar los campos del modal con la información de la tarjeta
@@ -151,16 +166,28 @@ form.addEventListener('submit', function (event) {
       descripcion.value = desc;
       horaInicio.value = horaInicioTexto;
       horaFinal.value = horaFinalTexto;
-      participantes.value = participantes;
-      ubicacion.value = ubicacion;
+      participantes.value = participantesTexto;
+      ubicacion.value = ubicacionTexto;
       tareaTerminada.checked = tareaTerminada;
-
+      
       // Mostrar el modal
       const modal = new bootstrap.Modal(document.getElementById("formtask"));
       modal.show();
+      
     });
-
+    tarjeta.setAttribute('data-id', idTarjeta);
   }
-
+  
   form.reset(); // Reiniciar formulario para edición sin bugs!
+});
+document.getElementById('deleteButton').addEventListener('click', function () {
+  const tarjetaId = selectedCard.getAttribute('data-id');
+  const tarjeta = document.getElementById(`tarjeta-${tarjetaId}`);
+  if (tarjeta) {
+    tarjeta.remove();
+  }
+  const eliminarTareaModalEl = document.getElementById("eliminarTareaModal");
+  const eliminarTareaModal = bootstrap.Modal.getInstance(eliminarTareaModalEl);
+  eliminarTareaModal.hide();
+  selectedCard = null;
 });
