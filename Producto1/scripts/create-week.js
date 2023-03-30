@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return Math.floor(Math.random() * 1000000);
   }
   //Creacion de tarjetas
-  function createCard(name, id, day, month, year, description) {
+  function createCard(name, id, week, month, year, description) {
     const cardContainer = document.createElement("div");
     cardContainer.classList.add("col-md-4", "mb-4");
   
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="card shadow-sm card-square" data-id="${id}" style="border-color: ${selectedColor}">
         <div class="card-body">
           <h5 class="card-title"><b>${name}</b></h5>
-          <p class ="card-text">Día: ${day}</p>
+          <p class ="card-text">Semana: ${week}</p>
           <p class ="card-text">Mes: ${month}</p>
           <p class ="card-text">Año: ${year}</p>
           <p class ="card-text">Descripcion: ${description}</p>
@@ -37,9 +37,9 @@ document.addEventListener("DOMContentLoaded", () => {
     mainRow.appendChild(cardContainer);
   
     // Escuchar eventos de click en los iconos de eliminar
-const deleteIcons = document.querySelectorAll(".bi-trash");
-deleteIcons.forEach((icon) => {
-  icon.addEventListener("click", (event) => {
+    const deleteIcons = document.querySelectorAll(".bi-trash");
+    deleteIcons.forEach((icon) => {
+    icon.addEventListener("click", (event) => {
     const card = event.target.closest(".card");
     const cardId = card.getAttribute("data-id");
     const deleteCardBtn = document.getElementById("eliminarTarjetaBtn");
@@ -90,23 +90,23 @@ deleteCardBtn.addEventListener("click", () => {
     if (valido) {
       e.preventDefault();
       let name = document.getElementById("name").value;
-      let day = document.getElementById("day").value;
+      let week = document.getElementById("week").value;
       let month = document.getElementById("month").value;
       let year = document.getElementById("year").value;
       let description = document.getElementById("description").value;
 
-      // validar campo numero de semana
-      const nameRegex = /^Semana (0?[1-9]|[1-4][0-9]|5[0-3])$/;
+      // validar  Nombre
+      const nameRegex = /^[a-zA-ZáéíóúñÁÉÍÓÚÑ\s]+$/;
       if (!nameRegex.test(name)) {
-        mostrarModal("Por favor ingrese un nombre.");
+        mostrarModal("Por favor ingrese un nombre válido.");
         return;
       }
 
-      // validar  día
-      const dayRegex = /^(0?[1-9]|[12][0-9]|3[01])$/;
-      if (!dayRegex.test(day)) {
-        mostrarModal("Por favor ingrese un día válido (entre 1 y 31).");
-        return;
+      // validar  Semana
+      const weekRegex = /^(0?[1-9]|[1-4][0-9]|5[0-3])$/;
+      if (!weekRegex.test(week)) {
+      mostrarModal("Por favor ingrese un número de semana válido (entre 01 y 53).");
+      return;
       }
 
       // validar  campo de mes
@@ -125,7 +125,7 @@ deleteCardBtn.addEventListener("click", () => {
 
       const id = generateRandomId();
 
-      createCard(name, id, day, month, year, description);
+      createCard(name, id, week, month, year);
 
       // Cerrar el modal
       const nuevaSemanaModal = document.getElementById("nuevaSemanaModal");
