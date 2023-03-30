@@ -10,6 +10,7 @@ function drop(event) {
 
 let tarjetaAEditar;
 let selectedDay;
+
 // Controlador de eventos para los botones
 document.querySelectorAll('[data-day]').forEach(button => {
   button.addEventListener('click', function () {
@@ -76,7 +77,8 @@ form.addEventListener('submit', function (event) {
       <label class="form-check-label" for="tarea-${nombreTarea.value}">Tarea terminada</label>
     </div>
     <div class="mt-auto d-flex justify-content-end">
-    <button type="button"><i class="bi bi-pencil-square text-primary"></i></button> 
+    <button type="button" class="btn btn-link p-0 editar-tarea"><i class="bi bi-pencil-square text-primary"></i></button>
+    </div>
     </div>
   </div>
 `;
@@ -104,6 +106,7 @@ form.addEventListener('submit', function (event) {
       tarjeta.classList.remove('borde-verde');
     }
   });
+
   // Cerrar el modal y resetear el formulario
   const modal = bootstrap.Modal.getInstance(document.querySelector('#formtask'));
   modal.hide();
@@ -132,13 +135,13 @@ form.addEventListener('submit', function (event) {
     const tareaTerminada = tarjeta.querySelector('.form-check-input').checked;
 
     // Rellenar los campos del modal con la información de la tarjeta
-    nombreTareaEdit.value = titulo;
-    descripcionEdit.value = desc;
-    horaInicioEdit.value = horaInicio;
-    horaFinalEdit.value = horaFinal;
-    participantesEdit.value = participantes;
-    ubicacionEdit.value = ubicacion;
-    tareaTerminadaEdit.checked = tareaTerminada;
+    nombreTarea.value = titulo;
+    descripcion.value = desc;
+    horaInicio.value = horaInicioTexto;
+    horaFinal.value = horaFinalTexto;
+    participantes.value = participantes;
+    ubicacion.value = ubicacion;
+    tareaTerminada.checked = tareaTerminada;
 
     // Mostrar el modal
     const modal = new bootstrap.Modal(document.getElementById("formtask"));
