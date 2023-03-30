@@ -113,8 +113,11 @@
             </div>
           </div>
         </div>
+        
       </div>
+      
     </div>
+    
     <div class="row">
       <div class="col-12 dropzone zone-bottom" ondragover="allowDrop(event)" ondrop="drop(event)" id="zone-bottom">
     
@@ -123,6 +126,11 @@
         <i class="bi bi-plus"></i>
       </button>
     </div>
+    <footer class="bg-dark text-light py-3">
+      <div class="container text-center">
+        Producto 1 - Desarrollo Full Stack con Javascript y servicios Web
+      </div>
+    </footer>
 
 
  <!-- Modal genérica -->
@@ -178,8 +186,6 @@
           </div>
           <div class="modal-footer">
             <button type="submit" id="saveButton" class="btn btn-success"><i class="bi bi-check"></i></button>
-            <button type="button" class="btn btn-danger"><i class="bi bi-x" data-bs-toggle="modal"
-              data-bs-target="#eliminarTareaModal"></i></button>
           </div>
         </form>
       </div>
@@ -219,20 +225,18 @@ aria-hidden="true">
     <div class="modal-footer">
       <a href="#" class="card-link"><button type="button" class="btn btn-secondary" data-bs-toggle="modal"
         data-bs-target="#formtask">Cancelar</button></a>
-      <a href="#" class="card-link"><button type="button" class="btn btn-danger"  data-bs-toggle="modal"
-        data-bs-target="#eliminarTareModal">Eliminar</button></a>
+        <a href="#" class="card-link"><button type="button" class="btn btn-danger" id="deleteButton" data-bs-toggle="modal" data-bs-target="#eliminarTareaModal">Eliminar</button></a>
     </div>
   </div>
+  
 </div>
 
   <script src="/Producto1/bootstrap/bootstrap.bundle.min.js"></script>
   <script src="/Producto1/scripts/create-task.js"></script>
   <script src="/Producto1/scripts/verify-data-task.js"></script>
   <script src="/Producto1/scripts/delete-task.js"></script>
-  <footer class="footer-fixed bg-dark text-light py-3">
-  <div class="container text-center">
-    Producto 1 - Desarrollo Full Stack con Javascript y servicios Web
-</footer>
+  
+ 
 </body>
 
 </html>

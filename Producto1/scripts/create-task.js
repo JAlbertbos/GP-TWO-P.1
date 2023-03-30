@@ -7,15 +7,15 @@ function drop(event) {
   var element = document.getElementById(data);
   event.target.appendChild(element);
 }
+
 let tarjetaAEditar;
 let selectedDay;
-// Controlador de eventos para los botones
 document.querySelectorAll('[data-day]').forEach(button => {
   button.addEventListener('click', function () {
     selectedDay = this.getAttribute('data-day');
   });
 });
-// Obtener elementos del formulario
+
 const form = document.querySelector('#formtask form');
 const nombreTarea = document.querySelector('#nombreTarea');
 const descripcion = document.querySelector('#descripcion');
@@ -26,9 +26,10 @@ const ubicacion = document.querySelector('#ubicacion');
 const tareaTerminada = document.querySelector('#tareaTerminada');
 const iconoPapelera = document.createElement('i');
 iconoPapelera.classList.add('bi', 'bi-trash-fill', 'ms-2', 'eliminar-tarea', 'text-danger');
-// Controlador de eventos para el formulario
-form.addEventListener('submit', function(event) {
+
+form.addEventListener('submit', function (event) {
   event.preventDefault();
+
 
   if (tarjetaAEditar) {
     // Actualizar la tarjeta existente
@@ -56,8 +57,7 @@ form.addEventListener('submit', function(event) {
     <div class="card-body">
       <div class="d-flex align-items-center justify-content-between">
         <h5 class="card-title">${nombreTarea.value}</h5>
-        <button type="button"  class="btn btn-link p-0 eliminar-tarea" data-bs-toggle="modal"
-      data-bs-target="#eliminarTareaModal">${iconoPapelera.outerHTML}</button>
+        <button type="button"  class="btn btn-link p-0 eliminar-tarea">${iconoPapelera.outerHTML}</button>
       </div>
       <p class="card-text">${descripcion.value}</p>
       <ul class="list-group list-group-flush">
@@ -89,7 +89,7 @@ form.addEventListener('submit', function(event) {
     if (!dropzone) {
       dropzone = document.querySelector('.zone-bottom');
     }
-    
+
     dropzone.appendChild(tarjeta);
     selectedDay = undefined;
     const checkbox = tarjeta.querySelector('.form-check-input');
@@ -100,45 +100,61 @@ form.addEventListener('submit', function(event) {
         tarjeta.classList.remove('borde-verde');
       }
     });
+    
     // Cerrar el modal y resetear el formulario
     const modal = bootstrap.Modal.getInstance(document.querySelector('#formtask'));
     modal.hide();
     form.reset();
     const botonEliminar = tarjeta.querySelector('.eliminar-tarea');
     botonEliminar.addEventListener('click', function () {
-      tarjeta.remove();
+      selectedCard = tarjeta;
+      const eliminarTareaModalEl = document.getElementById("eliminarTareaModal");
+      const eliminarTareaModal = new bootstrap.Modal(eliminarTareaModalEl);
+      eliminarTareaModal.show();
     });
 
     // Lapiz edicion
-const botonEditar = tarjeta.querySelector('.editar-tarea');
-botonEditar.addEventListener('click', function () {
-  // Guardar la referencia a la tarjeta que se va a editar
-  tarjetaAEditar = tarjeta;
+    const botonEditar = tarjeta.querySelector('.editar-tarea');
+    botonEditar.addEventListener('click', function () {
+      // Guardar la referencia a la tarjeta que se va a editar
+      tarjetaAEditar = tarjeta;
 
-  // Obtener la información de la tarjeta creada
-  const titulo = tarjeta.querySelector('.card-title').innerText;
-  const desc = tarjeta.querySelector('.card-text').innerText;
-  const horaInicioTexto = tarjeta.querySelector('.list-group-item:nth-child(1)').innerText.replace('Hora de inicio: ', '');
-  const horaFinalTexto = tarjeta.querySelector('.list-group-item:nth-child(2)').innerText.replace('Hora de final: ', '');
-  const participantes = tarjeta.querySelector('.list-group-item:nth-child(3)').innerText.replace('Participantes: ', '');
-  const ubicacion = tarjeta.querySelector('.list-group-item:nth-child(4)').innerText.replace('Ubicación: ', '');
-  const tareaTerminada = tarjeta.querySelector('.form-check-input').checked;
+      // Obtener la información de la tarjeta creada
+      const titulo = tarjeta.querySelector('.card-title').innerText;
+      const desc = tarjeta.querySelector('.card-text').innerText;
+      const horaInicioTexto = tarjeta.querySelector('.list-group-item:nth-child(1)').innerText.replace('Hora de inicio: ', '');
+      const horaFinalTexto = tarjeta.querySelector('.list-group-item:nth-child(2)').innerText.replace('Hora de final: ', '');
+      const participantes = tarjeta.querySelector('.list-group-item:nth-child(3)').innerText.replace('Participantes: ', '');
+      const ubicacion = tarjeta.querySelector('.list-group-item:nth-child(4)').innerText.replace('Ubicación: ', '');
+      const tareaTerminada = tarjeta.querySelector('.form-check-input').checked;
 
-  // Rellenar los campos del modal con la información de la tarjeta
-  nombreTarea.value = titulo;
-  descripcion.value = desc;
-  horaInicio.value = horaInicioTexto;
-  horaFinal.value = horaFinalTexto;
-  participantes.value = participantes;
-  ubicacion.value = ubicacion;
-  tareaTerminada.checked = tareaTerminada;
+      // Rellenar los campos del modal con la información de la tarjeta
+      nombreTarea.value = titulo;
+      descripcion.value = desc;
+      horaInicio.value = horaInicioTexto;
+      horaFinal.value = horaFinalTexto;
+      participantes.value = participantes;
+      ubicacion.value = ubicacion;
+      tareaTerminada.checked = tareaTerminada;
 
-  // Mostrar el modal
-  const modal = new bootstrap.Modal(document.getElementById("formtask"));
-  modal.show();
-});
-
+      // Mostrar el modal
+      const modal = new bootstrap.Modal(document.getElementById("formtask"));
+      modal.show();
+      
+    });
+    tarjeta.setAttribute('data-id', idTarjeta);
   }
-
+  
   form.reset(); // Reiniciar formulario para edición sin bugs!
+});
+document.getElementById('deleteButton').addEventListener('click', function () {
+  const tarjetaId = selectedCard.getAttribute('data-id');
+  const tarjeta = document.getElementById(`tarjeta-${tarjetaId}`);
+  if (tarjeta) {
+    tarjeta.remove();
+  }
+  const eliminarTareaModalEl = document.getElementById("eliminarTareaModal");
+  const eliminarTareaModal = bootstrap.Modal.getInstance(eliminarTareaModalEl);
+  eliminarTareaModal.hide();
+  selectedCard = null;
 });
