@@ -29,9 +29,22 @@ const tareaTerminada = document.querySelector('#tareaTerminada');
 const iconoPapelera = document.createElement('i');
 iconoPapelera.classList.add('bi', 'bi-trash-fill', 'ms-2', 'eliminar-tarea', 'text-danger');
 
+
 // Controlador de eventos para el formulario
 form.addEventListener('submit', function (event) {
   event.preventDefault();
+
+  const modalElement = document.getElementById("genericModal");
+  const mensajeModal = document.getElementById("genericModalMessage");
+
+  function mostrarModal(mensaje) {
+    const modal = new bootstrap.Modal(document.getElementById("genericModal"));
+    const mensajeModal = document.getElementById("genericModalMessage");
+    mensajeModal.innerText = mensaje;
+    modal.show();
+  }
+
+
 
   if (tarjetaAEditar) {
     // Actualizar la tarjeta existente
@@ -43,6 +56,7 @@ form.addEventListener('submit', function (event) {
     tarjetaAEditar.querySelector('.list-group-item:nth-child(4)').innerText = `Ubicación: ${ubicacion.value}`;
     tarjetaAEditar.querySelector('.form-check-input').checked = tareaTerminada.checked;
 
+
     // Reiniciar la variable tarjetaAEditar
     tarjetaAEditar = null;
 
@@ -50,7 +64,7 @@ form.addEventListener('submit', function (event) {
     modal.hide();
     form.reset();
   } else {
-    
+
     // Crear la tarjeta con los datos del formulario
     const tarjeta = document.createElement('div');
     const idTarjeta = Date.now().toString(); // Generar un ID único para la tarjeta
@@ -103,7 +117,7 @@ form.addEventListener('submit', function (event) {
         tarjeta.classList.remove('borde-verde');
       }
     });
-    
+
     // Cerrar el modal y resetear el formulario
     const modal = bootstrap.Modal.getInstance(document.querySelector('#formtask'));
     modal.hide();
@@ -115,6 +129,7 @@ form.addEventListener('submit', function (event) {
         tarjeta.remove();
       }
     });
+
 
     // Lapiz edicion
     const botonEditar = tarjeta.querySelector('.editar-tarea');

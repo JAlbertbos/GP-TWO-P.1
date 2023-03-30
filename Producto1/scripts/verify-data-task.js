@@ -1,22 +1,21 @@
-
-
 const modalElement = document.getElementById("genericModal");
 const mensajeModal = document.getElementById("genericModalMessage");
-const confirmBtn = document.getElementById("confirmBtn"); // Asegúrate de agregar el atributo id="confirmBtn" en tu botón de confirmación en el HTML
-const modal = new bootstrap.Modal(modalElement);
-// Mostrar el mensaje de error por falta de campos requeridos
+
 function mostrarModal(mensaje) {
+    const modal = new bootstrap.Modal(document.getElementById("genericModal"));
+    const mensajeModal = document.getElementById("genericModalMessage");
     mensajeModal.innerText = mensaje;
     modal.show();
 }
 
 // Escuchar el evento click en el botón de confirmación
+const confirmBtn = document.getElementById("saveButton");
 confirmBtn.addEventListener("click", (e) => {
-    var formulario = document.getElementById("formtask");
-    var inputsRequeridos = formulario.querySelectorAll("[required]");
-    var valido = true;
+    const formulario = document.getElementById("formtask");
+    const inputsRequeridos = formulario.querySelectorAll("[required]");
+    let valido = true;
 
-    for (var i = 0; i < inputsRequeridos.length; i++) {
+    for (let i = 0; i < inputsRequeridos.length; i++) {
         if (!inputsRequeridos[i].value) {
             valido = false;
             break;
@@ -25,9 +24,9 @@ confirmBtn.addEventListener("click", (e) => {
 
     if (valido) {
         e.preventDefault();
-        let name = document.getElementById("nombreTarea").value;
-        let initTime = document.getElementById("horaInicio").value;
-        let description = document.getElementById("descripcion").value;
+        const name = document.getElementById("nombreTarea").value;
+        const initTime = document.getElementById("horaInicio").value;
+        const description = document.getElementById("descripcion").value;
 
         // Expresión regular para validar el nombre de tarea
         const nameRegex = /^[a-zA-ZáéíóúñÁÉÍÓÚÑ\s]+$/;
