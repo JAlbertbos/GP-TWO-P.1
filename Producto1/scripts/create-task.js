@@ -27,10 +27,41 @@ const tareaTerminada = document.querySelector('#tareaTerminada');
 const iconoPapelera = document.createElement('i');
 iconoPapelera.classList.add('bi', 'bi-trash-fill', 'ms-2', 'eliminar-tarea', 'text-danger');
 
+
+function validarCampos() {
+  let mensajeError = '';
+
+  if (nombreTarea.value.trim() === '') {
+    mensajeError = 'El nombre de la tarea no puede estar vacío.';
+  } else if (descripcion.value.trim() === '') {
+    mensajeError = 'La descripción no puede estar vacía.';
+  } else if (horaInicio.value === '') {
+    mensajeError = 'La hora de inicio no puede estar vacía.';
+  } else if (horaFinal.value === '') {
+    mensajeError = 'La hora de final no puede estar vacía.';
+  } else if (participantes.value.trim() === '') {
+    mensajeError = 'Los participantes no pueden estar vacíos.';
+  } else if (ubicacion.value.trim() === '') {
+    mensajeError = 'La ubicación no puede estar vacía.';
+  }
+
+  if (mensajeError) {
+    document.getElementById('genericModalMessage').innerText = mensajeError;
+    const modal = new bootstrap.Modal(document.getElementById('genericModal'));
+    modal.show();
+    return false;
+  }
+
+  return true;
+}
+
 form.addEventListener('submit', function (event) {
   event.preventDefault();
 
-
+  
+  if (!validarCampos()) {
+    return;
+  }
   if (tarjetaAEditar) {
     // Actualizar la tarjeta existente
     tarjetaAEditar.querySelector('.card-title').innerText = nombreTarea.value;
@@ -44,10 +75,12 @@ form.addEventListener('submit', function (event) {
     // Reiniciar la variable tarjetaAEditar
     tarjetaAEditar = null;
 
+    
     const modal = bootstrap.Modal.getInstance(document.querySelector('#formtask'));
     modal.hide();
     form.reset();
   } else {
+    
     // Crear la tarjeta con los datos del formulario
     const tarjeta = document.createElement('div');
     const idTarjeta = Date.now().toString(); // Generar un ID único para la tarjeta
@@ -124,8 +157,8 @@ form.addEventListener('submit', function (event) {
       const desc = tarjeta.querySelector('.card-text').innerText;
       const horaInicioTexto = tarjeta.querySelector('.list-group-item:nth-child(1)').innerText.replace('Hora de inicio: ', '');
       const horaFinalTexto = tarjeta.querySelector('.list-group-item:nth-child(2)').innerText.replace('Hora de final: ', '');
-      const participantes = tarjeta.querySelector('.list-group-item:nth-child(3)').innerText.replace('Participantes: ', '');
-      const ubicacion = tarjeta.querySelector('.list-group-item:nth-child(4)').innerText.replace('Ubicación: ', '');
+      const participantesTexto = tarjeta.querySelector('.list-group-item:nth-child(3)').innerText.replace('Participantes: ', '');
+      const ubicacionTexto = tarjeta.querySelector('.list-group-item:nth-child(4)').innerText.replace('Ubicación: ', '');
       const tareaTerminada = tarjeta.querySelector('.form-check-input').checked;
 
       // Rellenar los campos del modal con la información de la tarjeta
@@ -133,10 +166,10 @@ form.addEventListener('submit', function (event) {
       descripcion.value = desc;
       horaInicio.value = horaInicioTexto;
       horaFinal.value = horaFinalTexto;
-      participantes.value = participantes;
-      ubicacion.value = ubicacion;
+      participantes.value = participantesTexto;
+      ubicacion.value = ubicacionTexto;
       tareaTerminada.checked = tareaTerminada;
-
+      
       // Mostrar el modal
       const modal = new bootstrap.Modal(document.getElementById("formtask"));
       modal.show();

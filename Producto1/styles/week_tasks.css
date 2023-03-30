@@ -12,6 +12,15 @@ body {
   background-size: cover;
   background-attachment: fixed;
 }
+
+.botonvolver{
+  background-color: #778fb3;;
+  border: none;
+}
+.botonvolver:hover{
+  background-color: #778fb3;;
+  border: none;
+}
 .contenedor-dia {
   display: flex;
   flex-direction: column;
@@ -23,7 +32,13 @@ body {
   border: 1px solid rgba(0,0,0,.125);
   border-radius: .25rem;
 }
-
+.color-rojo{
+  background-color: #d90429;
+}
+.color-rojo2{
+  color: #fff;
+  background-color: #ef233c;
+}
 .contenedor-dia .card-header {
   padding: .5rem 1rem;
   margin-bottom: 0;
@@ -58,7 +73,9 @@ footer {
   bottom: 0;
   left: 0;
   width: 100%;
+  background-color: #2b2d42;
 }
+
 
 .borde-verde {
   border-color: #00cc00;
@@ -66,4 +83,9 @@ footer {
 .form-check-input:checked {
   background-color: green;
   border-color: green;
+}
+.botonmas{
+  --bs-btn-bg: #778fb3;
+  --bs-btn-border-color: #778fb3;
+  color: azure;
 }
