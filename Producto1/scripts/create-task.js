@@ -37,12 +37,6 @@ function validarCampos() {
     mensajeError = 'La descripción no puede estar vacía.';
   } else if (horaInicio.value === '') {
     mensajeError = 'La hora de inicio no puede estar vacía.';
-  } else if (horaFinal.value === '') {
-    mensajeError = 'La hora de final no puede estar vacía.';
-  } else if (participantes.value.trim() === '') {
-    mensajeError = 'Los participantes no pueden estar vacíos.';
-  } else if (ubicacion.value.trim() === '') {
-    mensajeError = 'La ubicación no puede estar vacía.';
   }
 
   if (mensajeError) {
@@ -156,9 +150,9 @@ form.addEventListener('submit', function (event) {
       const titulo = tarjeta.querySelector('.card-title').innerText;
       const desc = tarjeta.querySelector('.card-text').innerText;
       const horaInicioTexto = tarjeta.querySelector('.list-group-item:nth-child(1)').innerText.replace('Hora de inicio: ', '');
-      const horaFinalTexto = tarjeta.querySelector('.list-group-item:nth-child(2)').innerText.replace('Hora de final: ', '');
-      const participantesTexto = tarjeta.querySelector('.list-group-item:nth-child(3)').innerText.replace('Participantes: ', '');
-      const ubicacionTexto = tarjeta.querySelector('.list-group-item:nth-child(4)').innerText.replace('Ubicación: ', '');
+      const horaFinalTexto = tarjeta.querySelector('.list-group-item:nth-child(2)').innerText.replace();
+      const participantesTexto = tarjeta.querySelector('.list-group-item:nth-child(3)').innerText.replace();
+      const ubicacionTexto = tarjeta.querySelector('.list-group-item:nth-child(4)').innerText.replace();
       const tareaTerminada = tarjeta.querySelector('.form-check-input').checked;
 
       // Rellenar los campos del modal con la información de la tarjeta
@@ -177,8 +171,9 @@ form.addEventListener('submit', function (event) {
     });
     tarjeta.setAttribute('data-id', idTarjeta);
   }
-  
-  form.reset(); // Reiniciar formulario para edición sin bugs!
+  tarjetaAEditar = null;
+  form.reset();
+   // Reiniciar formulario para edición sin bugs!
 });
 document.getElementById('deleteButton').addEventListener('click', function () {
   const tarjetaId = selectedCard.getAttribute('data-id');
