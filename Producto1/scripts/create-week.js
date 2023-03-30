@@ -37,9 +37,9 @@ document.addEventListener("DOMContentLoaded", () => {
     mainRow.appendChild(cardContainer);
   
     // Escuchar eventos de click en los iconos de eliminar
-const deleteIcons = document.querySelectorAll(".bi-trash");
-deleteIcons.forEach((icon) => {
-  icon.addEventListener("click", (event) => {
+    const deleteIcons = document.querySelectorAll(".bi-trash");
+    deleteIcons.forEach((icon) => {
+    icon.addEventListener("click", (event) => {
     const card = event.target.closest(".card");
     const cardId = card.getAttribute("data-id");
     const deleteCardBtn = document.getElementById("eliminarTarjetaBtn");
@@ -95,17 +95,18 @@ deleteCardBtn.addEventListener("click", () => {
       let year = document.getElementById("year").value;
       let description = document.getElementById("description").value;
 
-      // validar campo numero de semana
-      if (!name) {
-        mostrarModal("Por favor ingrese un titulo.");
+      // validar  Nombre
+      const nameRegex = /^[a-zA-ZáéíóúñÁÉÍÓÚÑ\s]+$/;
+      if (!nameRegex.test(name)) {
+        mostrarModal("Por favor ingrese un nombre válido.");
         return;
       }
 
-      // validar semana
-      const dayRegex = /^([1-9]|[1-4][0-9]|5[0-3])$/;
-      if (!dayRegex.test(week)) {
-        mostrarModal("Por favor ingrese numero de semana (del 1 al 53).");
-        return;
+      // validar  Semana
+      const weekRegex = /^(0?[1-9]|[1-4][0-9]|5[0-3])$/;
+      if (!weekRegex.test(week)) {
+      mostrarModal("Por favor ingrese un número de semana válido (entre 01 y 53).");
+      return;
       }
 
       // validar  campo de mes
@@ -124,7 +125,7 @@ deleteCardBtn.addEventListener("click", () => {
 
       const id = generateRandomId();
 
-      createCard(name, id, week, month, year, description);
+      createCard(name, id, week, month, year);
 
       // Cerrar el modal
       const nuevaSemanaModal = document.getElementById("nuevaSemanaModal");
@@ -135,7 +136,7 @@ deleteCardBtn.addEventListener("click", () => {
       cardForm.reset();
     } else {
       mostrarModal("Faltan campos por completar");
-     }
+    }
   });
 
   document.querySelectorAll(".delete-icon").forEach((deleteIcon) => {
