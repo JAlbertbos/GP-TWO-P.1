@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", () => {
   
   const confirmBtn = document.getElementById("confirmButton");
@@ -8,22 +7,37 @@ document.addEventListener("DOMContentLoaded", () => {
   function generateRandomId() {
     return Math.floor(Math.random() * 1000000);
   }
-  //Creacion de tarjetas
-  function createCard(name, id, week, month, year, description) {
+
+  function priorityToString(priority) {
+    switch (priority) {
+      case "1":
+        return "Alta";
+      case "2":
+        return "Media";
+      case "3":
+        return "Baja";
+      default:
+        return "";
+    }
+  }
+  
+  function createCard(name, id, week, priority, year, description) {
     const cardContainer = document.createElement("div");
     cardContainer.classList.add("col-md-4", "mb-4");
+  
+    const priorityText = priorityToString(priority);
   
     const card = `
       <div class="card shadow-sm card-square" data-id="${id}" style="border-color: ${selectedColor}">
         <div class="card-body">
           <h5 class="card-title"><b>${name}</b></h5>
           <p class ="card-text">Semana: ${week}</p>
-          <p class ="card-text">Mes: ${month}</p>
+          <p class ="card-text">Prioridad: ${priorityText}</p>
           <p class ="card-text">Año: ${year}</p>
           <p class ="card-text">Descripcion: ${description}</p>
         </div>
         <div class="card-icons d-flex justify-content-between position-absolute bottom-0 start-0 end-0">
-          <a href="/Producto1/Weektasks.html" class="card-link"><i class="bi bi-eye"></i></a>
+          <a href="/Producto2/Weektasks.html" class="card-link"><i class="bi bi-eye"></i></a>
           <a href="#" class="card-link">
             <i class="bi bi-trash delete-icon" data-bs-toggle="modal" data-bs-target="#eliminarTarjetaModal" data-card="${id}"></i>
           </a>
@@ -72,78 +86,81 @@ deleteCardBtn.addEventListener("click", () => {
     const mensajeModal = document.getElementById("genericModalMessage");
     mensajeModal.innerText = mensaje;
     modal.show();
-  }
-
-  confirmBtn.addEventListener("click", (e) => {
+    }
+    
+    confirmBtn.addEventListener("click", (e) => {
     var formulario = document.getElementById("cardForm");
     var inputsRequeridos = formulario.querySelectorAll("[required]");
-  
     var valido = true;
-  
-    for (var i = 0; i < inputsRequeridos.length; i++) {
-      if (!inputsRequeridos[i].value) {
-        valido = false;
-        break;
-      }
-    }
-  
-    if (valido) {
-      e.preventDefault();
-      let name = document.getElementById("name").value;
-      let week = document.getElementById("week").value;
-      let month = document.getElementById("month").value;
-      let year = document.getElementById("year").value;
-      let description = document.getElementById("description").value;
 
-      // validar  Nombre
-      const nameRegex = /^[a-zA-ZáéíóúñÁÉÍÓÚÑ\s]+$/;
-      if (!nameRegex.test(name)) {
-        mostrarModal("Por favor ingrese un nombre válido.");
-        return;
-      }
+for (var i = 0; i < inputsRequeridos.length; i++) {
+  if (!inputsRequeridos[i].value) {
+    valido = false;
+    break;
+  }
+}
 
-      // validar  Semana
-      const weekRegex = /^(0?[1-9]|[1-4][0-9]|5[0-3])$/;
-      if (!weekRegex.test(week)) {
-      mostrarModal("Por favor ingrese un número de semana válido (entre 01 y 53).");
-      return;
-      }
+if (valido) {
+  e.preventDefault();
+  let name = document.getElementById("name").value;
+  let week = document.getElementById("week").value;
+  let priority = document.getElementById("priority").value;
+  let year = document.getElementById("year").value;
+  let description = document.getElementById("description").value;
 
-      // validar  campo de mes
-      const monthRegex = /^(0?[1-9]|1[0-2])$/;
-      if (!monthRegex.test(month)) {
-        mostrarModal("Por favor ingrese un mes válido (entre 1 y 12).");
-        return;
-      }
+  // Validar nombre
+  if (name.trim() === "") {
+    mostrarModal("Por favor ingrese un nombre válido.");
+    return;
+  }
 
-      // validar  campo de año
-      const yearRegex = /^\d{4}$/;
-      if (!yearRegex.test(year)) {
-        mostrarModal("Por favor ingrese un año válido (formato: AAAA).");
-        return;
-      }
+  // validar  Semana
+  const weekRegex = /^(0?[1-9]|[1-4][0-9]|5[0-3])$/;
+  if (!weekRegex.test(week)) {
+  mostrarModal("Por favor ingrese un número de semana válido (entre 01 y 53).");
+  return;
+  }
 
-      const id = generateRandomId();
+  // validar  campo de prioridad
+  if (!["1", "2", "3"].includes(priority)) {
+    mostrarModal("Por favor seleccione una prioridad válida (Alta, Media o Baja).");
+    return;
+  }
 
-      createCard(name, id, week, month, year);
+  // validar  campo de año
+  const yearRegex = /^\d{4}$/;
+  if (!yearRegex.test(year)) {
+    mostrarModal("Por favor ingrese un año válido (formato: AAAA).");
+    return;
+  }
 
-      // Cerrar el modal
-      const nuevaSemanaModal = document.getElementById("nuevaSemanaModal");
-      const modal = bootstrap.Modal.getInstance(nuevaSemanaModal);
-      modal.hide();
+  // Validar descripción
+  if (description.trim() === "") {
+    mostrarModal("Por favor ingrese una descripción válida.");
+    return;
+  }
 
-      // Limpiar el formulario
-      cardForm.reset();
-    } else {
-      mostrarModal("Faltan campos por completar");
-    }
-  });
+  const id = generateRandomId();
 
-  document.querySelectorAll(".delete-icon").forEach((deleteIcon) => {
-    deleteIcon.addEventListener("click", (e) => {
-      e.preventDefault();
-      const cardContainer = e.target.closest(".col-md-4.mb-4");
-      deleteCard(cardContainer);
-    });
-  });
+  createCard(name, id, week, priority, year, description);
+
+  // Cerrar el modal
+  const nuevaSemanaModal = document.getElementById("nuevaSemanaModal");
+  const modal = bootstrap.Modal.getInstance(nuevaSemanaModal);
+  modal.hide();
+
+  // Limpiar el formulario
+  cardForm.reset();
+} else {
+  mostrarModal("Faltan campos por completar");
+}
+});
+
+document.querySelectorAll(".delete-icon").forEach((deleteIcon) => {
+deleteIcon.addEventListener("click", (e) => {
+e.preventDefault();
+const cardContainer = e.target.closest(".col-md-4.mb-4");
+deleteCard(cardContainer);
+});
+});
 });
